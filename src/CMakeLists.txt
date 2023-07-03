@@ -18,6 +18,8 @@ find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
 add_executable(triangular_pool
 	main.cpp
+	particle.cpp
+	wall.cpp
 )
 
 target_include_directories(triangular_pool PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/libraries)
