@@ -1,6 +1,8 @@
 #include "particle.hpp"
 
 #include <cmath>
+#include <glm/geometric.hpp>
+#include <stdexcept>
 
 Particle::Particle() : m_Position(0, 0), m_Velocity(0, 0) {
 }
@@ -29,11 +31,22 @@ glm::vec2 Particle::getVelocity() const {
   return m_Velocity;
 }
 
+void Particle::setSpeed(float speed) {
+  if (speed < 0) {
+    throw std::invalid_argument("Particle speed cannot be negative");
+  }
+  m_Velocity = glm::normalize(m_Velocity) * speed;
+}
+
+float Particle::getSpeed() const {
+  return m_Velocity.length();
+}
+
 void Particle::setTheta(float theta) {
   const float speed = m_Velocity.length();
   m_Velocity = glm::vec2(std::cos(theta) * speed, std::sin(theta) * speed);
 }
 
-double Particle::getTheta() const {
+float Particle::getTheta() const {
   return std::atan2(m_Velocity.y, m_Velocity.x);
 }
