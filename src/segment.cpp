@@ -69,6 +69,16 @@ float Segment::length() const {
   return glm::distance(m_A, m_B);
 }
 
+bool Segment::couldContain(glm::vec2 const& point) const {
+  const bool isALeftmost = m_A.x < m_B.x;
+  const bool isALowest = m_A.y < m_B.y;
+  glm::vec2 const& leftmost = isALeftmost ? m_A : m_B;
+  glm::vec2 const& rightmost = isALeftmost ? m_B : m_A;
+  glm::vec2 const& lowest = isALowest ? m_A : m_B;
+  glm::vec2 const& highest = isALowest ? m_B : m_A;
+  return point.x > leftmost.x && point.x < rightmost.x && point.y > lowest.y && point.y < highest.y;
+}
+
 void Segment::updateNormals() {
   float dx = m_B.x - m_A.x;
   float dy = m_B.y - m_A.y;

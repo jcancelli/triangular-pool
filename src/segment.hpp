@@ -25,6 +25,7 @@ class Segment {
   std::pair<glm::vec2, glm::vec2> getNormals() const;
   LinearEquation getLineEquation() const;
   float length() const;
+  bool couldContain(glm::vec2 const& point) const;
 
  private:
   void updateNormals();
