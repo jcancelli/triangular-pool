@@ -76,7 +76,8 @@ bool Segment::couldContain(glm::vec2 const& point) const {
   glm::vec2 const& rightmost = isALeftmost ? m_B : m_A;
   glm::vec2 const& lowest = isALowest ? m_A : m_B;
   glm::vec2 const& highest = isALowest ? m_B : m_A;
-  return point.x > leftmost.x && point.x < rightmost.x && point.y > lowest.y && point.y < highest.y;
+  return point.x >= leftmost.x && point.x <= rightmost.x && point.y >= lowest.y &&
+         point.y <= highest.y;
 }
 
 void Segment::updateNormals() {
