@@ -2,7 +2,7 @@
 
 #include "segment.hpp"
 
-std::optional<glm::vec2> lineLineIntersection(LinearEquation const& a, LinearEquation const& b) {
+std::optional<glm::vec2> intersection(LinearEquation const& a, LinearEquation const& b) {
   if (a.gradient == b.gradient) {
     return {};
   }
@@ -11,10 +11,9 @@ std::optional<glm::vec2> lineLineIntersection(LinearEquation const& a, LinearEqu
   return glm::vec2(x, y);
 }
 
-std::optional<glm::vec2> lineSegmentIntersection(LinearEquation const& line,
-                                                 Segment const& segment) {
+std::optional<glm::vec2> intersection(LinearEquation const& line, Segment const& segment) {
   LinearEquation segmentEquation = segment.getLineEquation();
-  const std::optional<glm::vec2> intersectionOpt = lineLineIntersection(line, segmentEquation);
+  const std::optional<glm::vec2> intersectionOpt = intersection(line, segmentEquation);
   if (!intersectionOpt.has_value()) {
     return {};
   }
@@ -25,11 +24,10 @@ std::optional<glm::vec2> lineSegmentIntersection(LinearEquation const& line,
   return intersection;
 }
 
-std::optional<glm::vec2> segmentSegmentIntersection(Segment const& a, Segment const& b) {
+std::optional<glm::vec2> intersection(Segment const& a, Segment const& b) {
   LinearEquation segmentAEquation = a.getLineEquation();
   LinearEquation segmentBEquation = b.getLineEquation();
-  const std::optional<glm::vec2> intersectionOpt =
-      lineLineIntersection(segmentAEquation, segmentBEquation);
+  const std::optional<glm::vec2> intersectionOpt = intersection(segmentAEquation, segmentBEquation);
   if (!intersectionOpt.has_value()) {
     return {};
   }

@@ -7,9 +7,8 @@
 #include "linear_equation.hpp"
 #include "segment.hpp"
 
-std::optional<glm::vec2> lineLineIntersection(LinearEquation const& a, LinearEquation const& b);
-std::optional<glm::vec2> lineSegmentIntersection(LinearEquation const& line,
-                                                 Segment const& segment);
-std::optional<glm::vec2> segmentSegmentIntersection(Segment const& a, Segment const& b);
+std::optional<glm::vec2> intersection(LinearEquation const& a, LinearEquation const& b);
+std::optional<glm::vec2> intersection(LinearEquation const& line, Segment const& segment);
+std::optional<glm::vec2> intersection(Segment const& a, Segment const& b);
 
 #endif
