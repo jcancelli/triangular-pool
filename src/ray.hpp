@@ -21,7 +21,7 @@ class Ray {
   void setDirection(glm::vec2 const& direction);
   glm::vec2 getDirection() const;
   LinearEquation getLineEquation() const;
-  bool Ray::couldContain(glm::vec2 const& point) const;
+  bool couldContain(glm::vec2 const& point) const;
 
  private:
   void updateEquation();
