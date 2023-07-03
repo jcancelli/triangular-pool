@@ -2,7 +2,7 @@
 #define LINEAR_EQUATION_HPP
 
 struct LinearEquation {
-  double angularCoef;
+  double gradient;
   double offset;
   double operator()(double x) const;
 };
