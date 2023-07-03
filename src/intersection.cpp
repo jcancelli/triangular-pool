@@ -24,6 +24,47 @@ std::optional<glm::vec2> intersection(LinearEquation const& line, Segment const&
   return intersection;
 }
 
+std::optional<glm::vec2> intersection(Ray const& ray, LinearEquation const& line) {
+  LinearEquation rayEquation = ray.getLineEquation();
+  const std::optional<glm::vec2> intersectionOpt = intersection(rayEquation, line);
+  if (!intersectionOpt.has_value()) {
+    return {};
+  }
+  glm::vec2 const& intersection = intersectionOpt.value();
+  if (!ray.couldContain(intersection)) {
+    return {};
+  }
+  return intersection;
+}
+
+std::optional<glm::vec2> intersection(Ray const& ray, Segment const& segment) {
+  LinearEquation rayEquation = ray.getLineEquation();
+  LinearEquation segmentEquation = segment.getLineEquation();
+  const std::optional<glm::vec2> intersectionOpt = intersection(rayEquation, segmentEquation);
+  if (!intersectionOpt.has_value()) {
+    return {};
+  }
+  glm::vec2 const& intersection = intersectionOpt.value();
+  if (!ray.couldContain(intersection)) {
+    return {};
+  }
+  return intersection;
+}
+
+std::optional<glm::vec2> intersection(Ray const& a, Ray const& b) {
+  LinearEquation rayAEquation = a.getLineEquation();
+  LinearEquation rayBEquation = b.getLineEquation();
+  const std::optional<glm::vec2> intersectionOpt = intersection(rayAEquation, rayBEquation);
+  if (!intersectionOpt.has_value()) {
+    return {};
+  }
+  glm::vec2 const& intersection = intersectionOpt.value();
+  if (!a.couldContain(intersection)) {
+    return {};
+  }
+  return intersection;
+}
+
 std::optional<glm::vec2> intersection(Segment const& a, Segment const& b) {
   LinearEquation segmentAEquation = a.getLineEquation();
   LinearEquation segmentBEquation = b.getLineEquation();

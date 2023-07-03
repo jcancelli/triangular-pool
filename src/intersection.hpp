@@ -5,10 +5,14 @@
 #include <optional>
 
 #include "linear_equation.hpp"
+#include "ray.hpp"
 #include "segment.hpp"
 
 std::optional<glm::vec2> intersection(LinearEquation const& a, LinearEquation const& b);
 std::optional<glm::vec2> intersection(LinearEquation const& line, Segment const& segment);
+std::optional<glm::vec2> intersection(Ray const& ray, LinearEquation const& line);
+std::optional<glm::vec2> intersection(Ray const& ray, Segment const& segment);
+std::optional<glm::vec2> intersection(Ray const& a, Ray const& b);
 std::optional<glm::vec2> intersection(Segment const& a, Segment const& b);
 
 #endif
