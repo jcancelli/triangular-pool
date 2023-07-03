@@ -50,3 +50,7 @@ void Particle::setTheta(float theta) {
 float Particle::getTheta() const {
   return std::atan2(m_Velocity.y, m_Velocity.x);
 }
+
+Ray Particle::getRay() const {
+  return Ray(m_Position, m_Velocity);
+}

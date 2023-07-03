@@ -3,6 +3,8 @@
 
 #include <glm/vec2.hpp>
 
+#include "ray.hpp"
+
 class Particle {
  private:
   glm::vec2 m_Position;
@@ -21,6 +23,7 @@ class Particle {
   float getSpeed() const;
   void setTheta(float theta);
   float getTheta() const;
+  Ray getRay() const;
 };
 
 #endif
