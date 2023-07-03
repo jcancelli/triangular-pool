@@ -21,6 +21,7 @@ add_executable(triangular_pool
 	linear_equation.cpp
 	main.cpp
 	particle.cpp
+	ray.cpp
 	segment.cpp
 	wall.cpp
 )
