@@ -3,7 +3,7 @@
 
 struct LinearEquation {
   double gradient;
-  double offset;
+  double offset = 0.0;
   double operator()(double x) const;
 };
 
