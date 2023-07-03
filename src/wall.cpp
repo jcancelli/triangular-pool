@@ -6,14 +6,14 @@
 #include <string>
 
 Wall::Wall(double r1, double r2, double l) : m_Start(0, r1), m_End(l, r2) {
-  if (r1 > 0 == r2 > 0) {
+  if ((r1 > 0) == (r2 > 0)) {
     throw std::invalid_argument("r1 and r2 must be on the same side of the x axis");
   }
   updateNormal();
 }
 
 Wall::Wall(glm::vec2 const& start, glm::vec2 const& end) : m_Start(start), m_End(end) {
-  if (start.y > 0 == end.y > 0) {
+  if ((start.y > 0) == (end.y > 0)) {
     throw std::invalid_argument("start and end must be on the same side of the x axis");
   }
   updateNormal();
@@ -28,7 +28,7 @@ bool Wall::isAboveXAxis() const {
 }
 
 void Wall::setStart(glm::vec2 const& start) {
-  if (start.y > 0 == m_End.y > 0) {
+  if ((start.y > 0) == (m_End.y > 0)) {
     throw std::invalid_argument("start and end must be on the same side of the x axis");
   }
   m_Start = start;
@@ -40,7 +40,7 @@ glm::vec2 Wall::getStart() const {
 }
 
 void Wall::setEnd(glm::vec2 const& end) {
-  if (m_Start.y > 0 == end.y > 0) {
+  if ((m_Start.y > 0) == (end.y > 0)) {
     throw std::invalid_argument("start and end must be on the same side of the x axis");
   }
   m_End = end;
