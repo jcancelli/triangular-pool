@@ -29,6 +29,11 @@ glm::vec2 Particle::getVelocity() const {
   return m_Velocity;
 }
 
-double Particle::theta() const {
+void Particle::setTheta(float theta) {
+  const float speed = m_Velocity.length();
+  m_Velocity = glm::vec2(std::cos(theta) * speed, std::sin(theta) * speed);
+}
+
+double Particle::getTheta() const {
   return std::atan2(m_Velocity.y, m_Velocity.x);
 }

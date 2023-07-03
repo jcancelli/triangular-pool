@@ -17,7 +17,8 @@ class Particle {
   glm::vec2 getPosition() const;
   void setVelocity(glm::vec2 const& velocity);
   glm::vec2 getVelocity() const;
-  double theta() const;
+  void setTheta(float theta);
+  double getTheta() const;
 };
 
 #endif
