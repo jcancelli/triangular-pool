@@ -17,8 +17,11 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS_DEBUG " -fsanitize=address,undefined -fno-o
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
 add_executable(triangular_pool
+	intersection.cpp
+	linear_equation.cpp
 	main.cpp
 	particle.cpp
+	segment.cpp
 	wall.cpp
 )
 
