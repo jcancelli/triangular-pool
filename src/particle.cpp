@@ -54,3 +54,7 @@ float Particle::getTheta() const {
 Ray Particle::getRay() const {
   return Ray(m_Position, m_Velocity);
 }
+
+void Particle::reflect(glm::vec2 const& surfaceNormal) {
+  m_Velocity = glm::reflect(m_Velocity, glm::normalize(surfaceNormal));
+}

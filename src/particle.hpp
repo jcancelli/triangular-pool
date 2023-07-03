@@ -24,6 +24,7 @@ class Particle {
   void setTheta(float theta);
   float getTheta() const;
   Ray getRay() const;
+  void reflect(glm::vec2 const& surfaceNormal);
 };
 
 #endif
