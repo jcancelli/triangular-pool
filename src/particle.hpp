@@ -9,6 +9,7 @@ class Particle {
   glm::vec2 m_Velocity;
 
  public:
+  Particle();
   Particle(double y, double speed, double theta);
   Particle(Particle const& other);
 

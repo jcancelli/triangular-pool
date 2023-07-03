@@ -2,6 +2,9 @@
 
 #include <cmath>
 
+Particle::Particle() : m_Position(0, 0), m_Velocity(0, 0) {
+}
+
 Particle::Particle(double y, double speed, double theta)
     : m_Position(0, y), m_Velocity(std::cos(theta) * speed, std::sin(theta) * speed) {
 }
