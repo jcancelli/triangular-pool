@@ -3,10 +3,13 @@
 
 #include <glm/vec2.hpp>
 
+#include "linear_equation.hpp"
+
 class Ray {
  private:
   glm::vec2 m_Origin;
   glm::vec2 m_Direction;
+  LinearEquation m_LineEquation;
 
  public:
   Ray(glm::vec2 const& origin, glm::vec2 const& direction);
@@ -17,7 +20,11 @@ class Ray {
   glm::vec2 getOrigin() const;
   void setDirection(glm::vec2 const& direction);
   glm::vec2 getDirection() const;
+  LinearEquation getLineEquation() const;
   bool Ray::couldContain(glm::vec2 const& point) const;
+
+ private:
+  void updateEquation();
 };
 
 #endif
