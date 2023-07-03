@@ -11,6 +11,7 @@ class Wall {
  public:
   Wall(double r1, double r2, double l);
   Wall(glm::vec2 const& start, glm::vec2 const& end);
+  Wall(Wall const& other);
 
   bool isAboveXAxis() const;
   void setStart(glm::vec2 const& start);

@@ -19,6 +19,10 @@ Wall::Wall(glm::vec2 const& start, glm::vec2 const& end) : m_Start(start), m_End
   updateNormal();
 }
 
+Wall::Wall(Wall const& other)
+    : m_Start(other.m_Start), m_End(other.m_End), m_Normal(other.m_Normal) {
+}
+
 bool Wall::isAboveXAxis() const {
   return m_Start.y > 0;  // gives for granted that start and end are on the same side of x axis
 }
