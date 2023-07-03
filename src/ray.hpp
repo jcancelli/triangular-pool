@@ -17,6 +17,7 @@ class Ray {
   glm::vec2 getOrigin() const;
   void setDirection(glm::vec2 const& direction);
   glm::vec2 getDirection() const;
+  bool Ray::couldContain(glm::vec2 const& point) const;
 };
 
 #endif

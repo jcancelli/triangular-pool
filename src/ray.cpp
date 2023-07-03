@@ -27,3 +27,12 @@ void Ray::setDirection(glm::vec2 const& direction) {
 glm::vec2 Ray::getDirection() const {
   return m_Direction;
 }
+
+bool Ray::couldContain(glm::vec2 const& point) const {
+  const bool isPointingUpwards = m_Direction.y > 0;
+  const bool isPointingRight = m_Direction.x > 0;
+  bool result = true;
+  result &= isPointingUpwards ? point.y >= m_Origin.y : point.y <= m_Origin.y;
+  result &= isPointingRight ? point.x >= m_Origin.x : point.x <= m_Origin.x;
+  return result;
+}
