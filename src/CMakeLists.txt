@@ -23,6 +23,7 @@ add_executable(triangular_pool
 	particle.cpp
 	ray.cpp
 	segment.cpp
+	simulation.cpp
 	wall.cpp
 )
 
