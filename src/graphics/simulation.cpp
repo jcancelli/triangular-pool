@@ -1,9 +1,10 @@
 #include "simulation.hpp"
 
-SimulationGraphics::SimulationGraphics(unsigned width, unsigned height, std::string const& title,
-                                       unsigned antialiasing)
-    : m_Window(sf::VideoMode(width, height), title, sf::Style::Default,
-               sf::ContextSettings(0, 0, antialiasing)) {
+SimulationGraphics::SimulationGraphics(unsigned width, unsigned height,
+                                       Simulation const& simulation)
+    : m_Window(sf::VideoMode(width, height), "Triangular Pool", sf::Style::Default,
+               sf::ContextSettings(0, 0, 8)),
+      m_Simulation{simulation} {
 }
 
 void SimulationGraphics::show() {
