@@ -1,6 +1,8 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 #include "arguments.hpp"
+#include "graphics/simulation.hpp"
 #include "simulation.hpp"
 
 int main(int argc, char* argv[]) {
@@ -22,6 +24,8 @@ int main(int argc, char* argv[]) {
                           config.stddevInitialTheta);
 
     if (config.graphics) {
+      SimulationGraphics graphics(700, 700, "Triangular pool", 8);
+      graphics.show();
     } else {
       for (int i = 0; i < config.iterations; i++) {
         simulation.newIteration();
