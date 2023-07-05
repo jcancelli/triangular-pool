@@ -179,6 +179,14 @@ Particle Simulation::getParticle() const {
   return m_Particle;
 }
 
+Wall Simulation::getWallHigh() const {
+  return m_WallHigh;
+}
+
+Wall Simulation::getWallLow() const {
+  return m_WallLow;
+}
+
 void Simulation::updateFinishLine() {
   m_FinishLine.setA(m_WallHigh.getB());
   m_FinishLine.setB(m_WallLow.getB());

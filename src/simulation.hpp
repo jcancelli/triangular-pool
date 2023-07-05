@@ -37,6 +37,8 @@ class Simulation {
   void setInitialParticleThetaStdDev(float devTheta);
   float getInitialParticleThetaStdDev() const;
   Particle getParticle() const;
+  Wall getWallHigh() const;
+  Wall getWallLow() const;
 
  private:
   void updateFinishLine();
