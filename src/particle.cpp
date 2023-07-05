@@ -4,6 +4,8 @@
 #include <glm/geometric.hpp>
 #include <stdexcept>
 
+#include "geometry/angles.hpp"
+
 Particle::Particle() : m_Position(0, 0), m_Velocity(0, 0) {
 }
 
@@ -60,5 +62,6 @@ void Particle::reflect(glm::vec2 const& surfaceNormal) {
 }
 
 std::ostream& operator<<(std::ostream& os, Particle const& particle) {
-  return os << "Position: " << particle.m_Position << ", Velocity: " << particle.m_Velocity;
+  return os << "Position: " << particle.m_Position << ", Velocity: " << particle.m_Velocity
+            << ", Theta: " << degrees(particle.getTheta());
 }
