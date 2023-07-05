@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 add_library(geometry
+	angles.cpp
 	intersection.cpp
 	linear_equation.cpp
 	ray.cpp
