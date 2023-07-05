@@ -44,10 +44,10 @@ void Simulation::newIteration() {
 
   float initialTheta = m_ThetaDistribution(m_RandomEngine);
   // if theta is out of bounds re-calculate theta (max 20 tries)
-  for (int i = 0; (initialTheta < M_PI_2 || initialTheta > -M_PI_2) && i < 20; i++) {
+  for (int i = 0; (initialTheta > M_PI_2 || initialTheta < -M_PI_2) && i < 20; i++) {
     initialTheta = m_ThetaDistribution(m_RandomEngine);
   }
-  if (initialTheta < M_PI_2 || initialTheta > -M_PI_2) {
+  if (initialTheta > M_PI_2 || initialTheta < -M_PI_2) {
     throw std::runtime_error("Initial particle theta out of valid range");
   }
 
