@@ -36,6 +36,7 @@ class Simulation {
   float getMeanInitialParticleTheta() const;
   void setInitialParticleThetaStdDev(float devTheta);
   float getInitialParticleThetaStdDev() const;
+  Particle getParticle() const;
 
  private:
   void updateFinishLine();

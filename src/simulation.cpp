@@ -175,6 +175,10 @@ float Simulation::getInitialParticleThetaStdDev() const {
   return m_ThetaDistribution.stddev();
 }
 
+Particle Simulation::getParticle() const {
+  return m_Particle;
+}
+
 void Simulation::updateFinishLine() {
   m_FinishLine.setA(m_WallHigh.getB());
   m_FinishLine.setB(m_WallLow.getB());
