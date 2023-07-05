@@ -5,7 +5,7 @@
 #include <random>
 #include <stdexcept>
 
-#include "intersection.hpp"
+#include "geometry/intersection.hpp"
 
 Simulation::Simulation(float r1, float r2, float l, float meanY, float devY, float meanTheta,
                        float devTheta)

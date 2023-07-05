@@ -1,7 +1,7 @@
 #ifndef WALL_HPP
 #define WALL_HPP
 
-#include "segment.hpp"
+#include "geometry/segment.hpp"
 
 class Wall : public Segment {
  public:

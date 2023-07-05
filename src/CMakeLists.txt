@@ -16,16 +16,16 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS_DEBUG " -fsanitize=address,undefined -fno-o
 
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
+add_subdirectory(geometry)
+
 add_executable(triangular_pool
-	intersection.cpp
-	linear_equation.cpp
 	main.cpp
 	particle.cpp
-	ray.cpp
-	segment.cpp
 	simulation.cpp
 	wall.cpp
 )
 
 target_include_directories(triangular_pool PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/libraries)
+
+target_link_libraries(triangular_pool PRIVATE geometry)
 target_link_libraries(triangular_pool PRIVATE sfml-graphics)
