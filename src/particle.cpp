@@ -58,3 +58,7 @@ Ray Particle::getRay() const {
 void Particle::reflect(glm::vec2 const& surfaceNormal) {
   m_Velocity = glm::reflect(m_Velocity, glm::normalize(surfaceNormal));
 }
+
+std::ostream& operator<<(std::ostream& os, Particle const& particle) {
+  return os << "Position: " << particle.m_Position << ", Velocity: " << particle.m_Velocity;
+}

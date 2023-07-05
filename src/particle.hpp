@@ -2,6 +2,7 @@
 #define PARTICLE_HPP
 
 #include <glm/vec2.hpp>
+#include <ostream>
 
 #include "geometry/ray.hpp"
 
@@ -25,6 +26,7 @@ class Particle {
   float getTheta() const;
   Ray getRay() const;
   void reflect(glm::vec2 const& surfaceNormal);
+  friend std::ostream& operator<<(std::ostream& os, Particle const& particle);
 };
 
 #endif
