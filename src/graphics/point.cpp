@@ -3,10 +3,11 @@
 #include "font.hpp"
 
 static const unsigned DEFAULT_RADIUS = 5;
-static const unsigned DEFAULT_FONT_SIZE = 16;
+static const unsigned DEFAULT_FONT_SIZE = 15;
 static const sf::Color DEFAULT_COLOR = sf::Color::Red;
+static const PointGraphics::TextSide DEFAULT_TEXT_SIDE = PointGraphics::TextSide::Top;
 
-PointGraphics::PointGraphics() {
+PointGraphics::PointGraphics() : m_TextSide(DEFAULT_TEXT_SIDE) {
   setRadius(DEFAULT_RADIUS);
 
   m_Text.setFont(g_FontLucindaSansRegular);
@@ -16,7 +17,8 @@ PointGraphics::PointGraphics() {
   setColor(DEFAULT_COLOR);
 }
 
-PointGraphics::PointGraphics(double x, double y, double radius, std::string const& text) {
+PointGraphics::PointGraphics(double x, double y, double radius, std::string const& text)
+    : m_TextSide(DEFAULT_TEXT_SIDE) {
   setRadius(radius);
 
   m_Text.setFont(g_FontLucindaSansRegular);
@@ -29,10 +31,20 @@ PointGraphics::PointGraphics(double x, double y, double radius, std::string cons
 
 void PointGraphics::setText(std::string const& text) {
   m_Text.setString(text);
+  setTextSide(m_TextSide);
 }
 
 std::string PointGraphics::getText() const {
   return m_Text.getString();
+}
+
+void PointGraphics::setTextSide(PointGraphics::TextSide side) {
+  m_TextSide = side;
+  alignText();
+}
+
+PointGraphics::TextSide PointGraphics::getTextSide() const {
+  return m_TextSide;
 }
 
 void PointGraphics::setColor(sf::Color const& color) {
@@ -71,5 +83,32 @@ void PointGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) cons
 
 void PointGraphics::alignText() {
   auto radius = getRadius();
-  m_Text.setPosition(radius * 2, -radius - getFontSize());
+  const auto bounds = m_Text.getLocalBounds();
+  const double margin = 5;
+  switch (m_TextSide) {
+    case TextSide::Top:
+      m_Text.setPosition((-bounds.width / 2) + radius, -bounds.height - radius - margin);
+      break;
+    case TextSide::TopRight:
+      m_Text.setPosition(radius * 2 + margin, -bounds.height - radius - margin);
+      break;
+    case TextSide::Right:
+      m_Text.setPosition(radius * 2 + margin, radius);
+      break;
+    case TextSide::BottomRight:
+      m_Text.setPosition(radius * 2 + margin, radius * 2 + margin);
+      break;
+    case TextSide::Bottom:
+      m_Text.setPosition((-bounds.width / 2) + radius, radius * 2 + margin);
+      break;
+    case TextSide::BottomLeft:
+      m_Text.setPosition(-bounds.width - radius - margin, radius * 2 + margin);
+      break;
+    case TextSide::Left:
+      m_Text.setPosition(-bounds.width - radius - margin, radius);
+      break;
+    case TextSide::TopLeft:
+      m_Text.setPosition(-bounds.width - radius - margin, -bounds.height - radius - margin);
+      break;
+  }
 }

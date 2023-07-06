@@ -8,9 +8,13 @@
 #include "graphics.hpp"
 
 class PointGraphics : public Graphics {
+ public:
+  enum class TextSide { Top, TopRight, Right, BottomRight, Bottom, BottomLeft, Left, TopLeft };
+
  private:
   sf::CircleShape m_Point;
   sf::Text m_Text;
+  TextSide m_TextSide;
 
  public:
   PointGraphics();
@@ -18,6 +22,8 @@ class PointGraphics : public Graphics {
 
   void setText(std::string const& text);
   std::string getText() const;
+  void setTextSide(TextSide side);
+  TextSide getTextSide() const;
   void setColor(sf::Color const& color);
   sf::Color getColor() const;
   void setFontSize(unsigned fontSize);
