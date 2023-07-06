@@ -1,10 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "arguments.hpp"
 #include "graphics/font.hpp"
 #include "graphics/window.hpp"
 #include "simulation.hpp"
+#include "util/arguments.hpp"
 
 int main(int argc, char* argv[]) {
   try {
@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
                           config.stddevInitialTheta);
 
     if (config.graphics) {
-      GraphicsWindow window(700, 700, simulation);
+      GraphicsWindow window(simulation);
       window.show();
     } else {
       for (int i = 0; i < config.iterations; i++) {
