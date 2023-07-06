@@ -4,7 +4,7 @@
 #include <glm/vec2.hpp>
 #include <ostream>
 
-#include "geometry/ray.hpp"
+#include "math/ray.hpp"
 
 class Particle {
  private:

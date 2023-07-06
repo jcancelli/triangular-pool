@@ -4,7 +4,7 @@
 #include <glm/geometric.hpp>
 #include <stdexcept>
 
-#include "geometry/angles.hpp"
+#include "math/angles.hpp"
 
 Particle::Particle() : m_Position(0, 0), m_Velocity(0, 0) {
 }
