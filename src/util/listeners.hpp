@@ -1,6 +1,7 @@
 #ifndef UTIL_LISTENERS_HPP
 #define UTIL_LISTENERS_HPP
 
+#include <functional>
 #include <map>
 #include <type_traits>
 
