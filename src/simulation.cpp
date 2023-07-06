@@ -175,15 +175,15 @@ float Simulation::getInitialParticleThetaStdDev() const {
   return m_ThetaDistribution.stddev();
 }
 
-Particle Simulation::getParticle() const {
+Particle const& Simulation::getParticle() const {
   return m_Particle;
 }
 
-Wall Simulation::getWallHigh() const {
+Wall const& Simulation::getWallHigh() const {
   return m_WallHigh;
 }
 
-Wall Simulation::getWallLow() const {
+Wall const& Simulation::getWallLow() const {
   return m_WallLow;
 }
 
