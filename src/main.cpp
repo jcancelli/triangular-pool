@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "arguments.hpp"
+#include "graphics/font.hpp"
 #include "graphics/window.hpp"
 #include "simulation.hpp"
 
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]) {
         break;
     }
 
+    loadFonts();  // throws runtime_error if unable to find a font file
+
     Simulation simulation(config.r1, config.r2, config.l, config.meanInitialY,
                           config.stddevInitialY, config.meanInitialTheta,
                           config.stddevInitialTheta);
@@ -32,6 +35,9 @@ int main(int argc, char* argv[]) {
         simulation.immediate();
       }
     }
+  } catch (std::runtime_error const& e) {
+    std::cout << e.what() << "\n";
+    return EXIT_FAILURE;
   } catch (std::exception const& e) {
     std::cout << "Unexpected error\n";
     std::cout << e.what() << "\n";
