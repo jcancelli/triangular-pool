@@ -87,16 +87,18 @@ void Simulation::immediate() {
       m_Particle.setPosition(collision.position);
       m_Particle.reflect(collision.wallNormal);
       m_CollisionListeners.notify(m_Particle);
-    } else {                                // Check if particle reached final position
-      auto finalPositionOpt = intersection(m_Particle.getRay(), m_FinishLine);
-      if (!finalPositionOpt.has_value()) {  // Check if particle came out of the back
-        finalPositionOpt = intersection(m_Particle.getRay(), m_StartLine);
-        assert(finalPositionOpt.has_value());
-      }
-      m_Particle.setPosition(finalPositionOpt.value());
-      m_IterationEndedListeners.notify(m_Particle);
-      isFinished = true;
+      continue;
     }
+
+    // Particle reached final position
+    auto finalPositionOpt = intersection(m_Particle.getRay(), m_FinishLine);
+    if (!finalPositionOpt.has_value()) {  // Check if particle came out of the back
+      finalPositionOpt = intersection(m_Particle.getRay(), m_StartLine);
+      assert(finalPositionOpt.has_value());
+    }
+    m_Particle.setPosition(finalPositionOpt.value());
+    m_IterationEndedListeners.notify(m_Particle);
+    isFinished = true;
   }
 }
 
