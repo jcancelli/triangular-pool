@@ -72,6 +72,45 @@ void Simulation::newIteration() {
 }
 
 void Simulation::update(double deltaMs) {
+  double distanceToTravel = m_Particle.getSpeed() * deltaMs;
+
+  while (distanceToTravel > 0.0) {
+    auto nextCollisionOpt = nextCollision();
+    if (nextCollisionOpt.has_value()) {  // Particle is pointing toward a wall
+      auto nextCollisionV = nextCollisionOpt.value();
+      auto distanceToNextCollision = (nextCollisionV.position - m_Particle.getPosition()).length();
+      if (distanceToTravel >= distanceToNextCollision) {  // Particle will hit the wall
+        m_Particle.setPosition(nextCollisionV.position);
+        m_Particle.reflect(nextCollisionV.wallNormal);
+        m_CollisionListeners.notify(m_Particle);
+        distanceToTravel -= distanceToNextCollision;
+      } else {  // Particle won't hit the wall
+        auto particleDirection = glm::normalize(m_Particle.getVelocity());
+        auto nextPositionOffset = particleDirection * float(distanceToTravel);
+        m_Particle.setPosition(m_Particle.getPosition() + nextPositionOffset);
+        distanceToTravel = 0.0;
+      }
+    } else {  // Particle is pointing at either finish line or starting line
+      auto particleRay = m_Particle.getRay();
+      auto finalPositionOpt = intersection(particleRay, m_FinishLine);
+      if (!finalPositionOpt.has_value()) {
+        auto finalPositionOpt = intersection(particleRay, m_StartLine);
+        assert(finalPositionOpt.has_value());
+      }
+      auto finalPosition = finalPositionOpt.value();
+      auto distanceToFinalPosition = (finalPosition - m_Particle.getPosition()).length();
+      if (distanceToTravel >= distanceToFinalPosition) {  // Particle will reach final position
+        m_Particle.setPosition(finalPosition);
+        m_IterationEndedListeners.notify(m_Particle);
+        distanceToTravel = 0.0;
+      } else {  // Particle won't reach final position
+        auto particleDirection = glm::normalize(m_Particle.getVelocity());
+        auto nextPositionOffset = particleDirection * float(distanceToTravel);
+        m_Particle.setPosition(m_Particle.getPosition() + nextPositionOffset);
+        distanceToTravel = 0.0;
+      }
+    }
+  }
 }
 
 void Simulation::immediate() {
@@ -82,7 +121,7 @@ void Simulation::immediate() {
   while (!isFinished) {
     auto collisionOpt = nextCollision();
 
-    if (collisionOpt.has_value()) {
+    if (collisionOpt.has_value()) {  // Particle will collide with wall
       auto collision = collisionOpt.value();
       m_Particle.setPosition(collision.position);
       m_Particle.reflect(collision.wallNormal);
@@ -90,10 +129,11 @@ void Simulation::immediate() {
       continue;
     }
 
-    // Particle reached final position
-    auto finalPositionOpt = intersection(m_Particle.getRay(), m_FinishLine);
-    if (!finalPositionOpt.has_value()) {  // Check if particle came out of the back
-      finalPositionOpt = intersection(m_Particle.getRay(), m_StartLine);
+    // Particle will reach final position
+    auto particleRay = m_Particle.getRay();
+    auto finalPositionOpt = intersection(particleRay, m_FinishLine);
+    if (!finalPositionOpt.has_value()) {  // Check if particle will come out of the back
+      finalPositionOpt = intersection(particleRay, m_StartLine);
       assert(finalPositionOpt.has_value());
     }
     m_Particle.setPosition(finalPositionOpt.value());
