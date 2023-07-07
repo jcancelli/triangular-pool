@@ -12,7 +12,7 @@ class GraphicsWindow {
   SimulationGraphics m_SimulationGraphics;
 
  public:
-  GraphicsWindow(unsigned width, unsigned height, Simulation const& simulation);
+  GraphicsWindow(Simulation const& simulation);
 
   void show();
 
