@@ -47,10 +47,10 @@ void Simulation::newIteration() {
 
   float initialY = m_ParticleYDistribution(m_RandomEngine);
   // if initialY is out of bounds re-calculate initialY (max 20 tries)
-  for (int i = 0; (initialY < -r1 || initialY > r1) && i < 20; i++) {
+  for (int i = 0; (initialY <= -r1 || initialY >= r1) && i < 20; i++) {
     initialY = m_ParticleYDistribution(m_RandomEngine);
   }
-  if (initialY < -r1 || initialY > r1) {
+  if (initialY <= -r1 || initialY >= r1) {
     throw std::runtime_error("Initial particle y out of valid range");
   }
 
