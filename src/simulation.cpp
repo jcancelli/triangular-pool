@@ -114,8 +114,6 @@ void Simulation::update(double deltaMs) {
 }
 
 void Simulation::immediate() {
-  const float l = getL();
-
   bool isFinished = false;
 
   while (!isFinished) {
