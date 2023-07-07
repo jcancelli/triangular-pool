@@ -6,16 +6,16 @@
 TEST_CASE("Testing mean") {
   std::vector<double> values;
 
-  SUBCASE("0 values") {
+  SUBCASE("Testing n: 0") {
     CHECK_THROWS(mean(values));
   }
 
-  SUBCASE("1 value") {
+  SUBCASE("Testing n: 1") {
     values.push_back(5);
     CHECK_EQ(mean(values), 5);
   }
 
-  SUBCASE("n values") {
+  SUBCASE("Testing n: n") {
     values.push_back(6);
     values.push_back(-11);
     values.push_back(3);
@@ -27,16 +27,16 @@ TEST_CASE("Testing mean") {
 TEST_CASE("Testing variance") {
   std::vector<double> values;
 
-  SUBCASE("0 values") {
+  SUBCASE("Testing n: 0") {
     CHECK_THROWS(variance(values));
   }
 
-  SUBCASE("1 value") {
+  SUBCASE("Testing n: 1") {
     values.push_back(5);
     CHECK_THROWS(variance(values));
   }
 
-  SUBCASE("n values") {
+  SUBCASE("Testing n: n") {
     values.push_back(6.0);
     values.push_back(-11.0);
     values.push_back(3.0);
@@ -48,20 +48,63 @@ TEST_CASE("Testing variance") {
 TEST_CASE("Testing stdDev") {
   std::vector<double> values;
 
-  SUBCASE("0 values") {
+  SUBCASE("Testing n: 0") {
     CHECK_THROWS(stdDev(values));
   }
 
-  SUBCASE("1 value") {
+  SUBCASE("Testing n: 1") {
     values.push_back(5);
     CHECK_THROWS(stdDev(values));
   }
 
-  SUBCASE("n values") {
+  SUBCASE("Testing n: n") {
     values.push_back(6.0);
     values.push_back(-11.0);
     values.push_back(3.0);
     values.push_back(-4.0);
     CHECK_EQ(stdDev(values), doctest::Approx(7.5938571666));
+  }
+}
+
+TEST_CASE("Testing median") {
+  std::vector<double> values;
+
+  SUBCASE("Testing n: 0") {
+    CHECK_THROWS(median(values));
+  }
+
+  SUBCASE("Testing n: 1") {
+    values.push_back(5);
+    CHECK_EQ(median(values), 5);
+  }
+
+  SUBCASE("Testing n: n") {
+    values.push_back(6.0);
+    values.push_back(-11.0);
+    values.push_back(3.0);
+    values.push_back(-4.0);
+    CHECK_EQ(median(values), -0.5);
+  }
+}
+
+TEST_CASE("Testing skewness") {
+  std::vector<double> values;
+
+  SUBCASE("Testing n: 0") {
+    CHECK_THROWS(skewness(values));
+  }
+
+  SUBCASE("Testing n: 1") {
+    values.push_back(5);
+    CHECK_THROWS(skewness(values));
+  }
+
+  SUBCASE("Testing n: n") {
+    values.push_back(6.0);
+    values.push_back(-11.0);
+    values.push_back(3.0);
+    values.push_back(-4.0);
+    values.push_back(-0.4);
+    CHECK_EQ(skewness(values), doctest::Approx(-0.41275));
   }
 }
