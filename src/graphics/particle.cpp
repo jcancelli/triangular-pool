@@ -5,7 +5,7 @@
 
 #include "../math/angles.hpp"
 
-static const double VELOCITY_LINE_THICKNESS = 5;
+static const double VELOCITY_LINE_THICKNESS = 2.5;
 static const double POINT_RADIUS = 5;
 
 ParticleGraphics::ParticleGraphics(Particle const& particle)
