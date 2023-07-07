@@ -49,6 +49,10 @@ bool Ray::couldContain(glm::vec2 const& point) const {
 }
 
 void Ray::updateEquation() {
-  m_LineEquation.gradient = m_Direction.y / m_Direction.x;
-  m_LineEquation.offset = m_Origin.y - m_LineEquation.gradient * m_Origin.x;
+  if (m_Direction.x != 0) {  // ray is not vertical
+    m_LineEquation.gradient = m_Direction.y / m_Direction.x;
+    m_LineEquation.offset = m_Origin.y - m_LineEquation.gradient * m_Origin.x;
+  } else {
+    m_LineEquation.gradient = m_LineEquation.offset = std::numeric_limits<double>::infinity();
+  }
 }
