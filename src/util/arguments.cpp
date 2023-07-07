@@ -43,12 +43,16 @@ ParseStatus parseArguments(int argc, char* argv[], Config& config) {
       .default_value(config.stddevInitialTheta)
       .nargs(1)
       .help("Standard deviation of the initial particle direction angle value.");
+  params.add_parameter(config.verboseOutput, "--verbose")
+      .default_value(config.verboseOutput)
+      .flagValue("1")
+      .help("Value of y of the leftmost extreme of the upper wall (-r1 for the lower wall).");
   params.add_parameter(config.graphics, "--graphics")
       .default_value(config.graphics)
-      .nargs(1)
+      .flagValue("1")
       .help(
-          "Enables or disables graphical visualization of the simulation. In graphical mode the "
-          "simulation keeps running (the parameter n is ignored).");
+          "Enables graphical visualization of the simulation. In graphical mode the "
+          "simulation keeps iterating until the program is stopped (the parameter n is ignored).");
 
   try {
     argumentum::ParseResult parseResults = parser.parse_args(argc, argv);
