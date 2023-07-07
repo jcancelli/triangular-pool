@@ -88,8 +88,10 @@ void Segment::updateNormals() {
 
 void Segment::updateEquation() {
   const glm::vec2 direction = m_A.x > m_B.x ? m_A - m_B : m_B - m_A;
-  m_LineEquation.gradient = direction.x != 0                                //
-                                ? (direction.y / direction.x)               //
-                                : std::numeric_limits<double>::infinity();  //
-  m_LineEquation.offset = m_A.y - m_LineEquation.gradient * m_A.x;
+  if (direction.x != 0) {
+    m_LineEquation.gradient = direction.y / direction.x;
+    m_LineEquation.offset = m_A.y - m_LineEquation.gradient * m_A.x;
+  } else {
+    m_LineEquation.gradient = m_LineEquation.offset = std::numeric_limits<double>::infinity();
+  }
 }
