@@ -229,15 +229,10 @@ std::optional<Simulation::Collision> Simulation::nextCollision() const {
 }
 
 glm::vec2 Simulation::wallNormalFromCollisionPoint(glm::vec2 const& collisionPoint) const {
-  glm::vec2 wallNormal;
   if (collisionPoint.y > 0) {
     auto wallNormals = m_WallHigh.getNormals();
-    // Get the normal that is pointing toward the x axis
-    wallNormal = wallNormals.first.y < 0 ? wallNormals.first : wallNormals.second;
-  } else {
-    auto wallNormals = m_WallLow.getNormals();
-    // Get the normal that is pointing toward the x axis
-    wallNormal = wallNormals.first.y > 0 ? wallNormals.first : wallNormals.second;
+    return wallNormals.first.y < 0 ? wallNormals.first : wallNormals.second;
   }
-  return wallNormal;
+  auto wallNormals = m_WallLow.getNormals();
+  return wallNormals.first.y > 0 ? wallNormals.first : wallNormals.second;
 }
