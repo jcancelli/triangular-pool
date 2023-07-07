@@ -106,7 +106,9 @@ void Statistics::updateStats() {
   m_StdDevFinalY = stdDev(yValues, m_MeanFinalY);
   m_StdDevFinalTheta = stdDev(thetaValues, m_MeanFinalTheta);
 
-  // TODO: implement symmetry coef
+  m_SymmetryFinalY = skewness(yValues, m_MeanFinalY, m_StdDevFinalY);
+  m_SymmetryFinalTheta = skewness(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
+
   // TODO: implement flattening coef
 }
 
@@ -145,4 +147,5 @@ std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
 
     i++;
   }
+  return os;
 }
