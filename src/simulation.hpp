@@ -5,16 +5,22 @@
 #include <random>
 
 #include "particle.hpp"
+#include "statistics.hpp"
+#include "util/listeners.hpp"
 #include "wall.hpp"
 
 class Simulation {
  private:
   Wall m_WallHigh, m_WallLow;
   Particle m_Particle;
-  Segment m_FinishLine;
+  Segment m_StartLine, m_FinishLine;
   std::default_random_engine m_RandomEngine;
   std::normal_distribution<float> m_ParticleYDistribution;
   std::normal_distribution<float> m_ThetaDistribution;
+  Statistics m_Stats;
+  Listeners<Particle const&> m_NewIterationListeners;
+  Listeners<Particle const&> m_CollisionListeners;
+  Listeners<Particle const&> m_IterationEndedListeners;
 
  public:
   Simulation(float r1, float r2, float l, float meanY, float devY, float meanTheta, float devTheta);
@@ -22,26 +28,25 @@ class Simulation {
   void newIteration();          // Start a new simulation
   void update(double deltaMs);  // Progress the simulation by delta time
   void immediate();             // End the simulation in one go
-  void setR1(float r1);
   float getR1() const;
-  void setR2(float r2);
   float getR2() const;
-  void setL(float l);
   float getL() const;
-  void setMeanInitialParticleY(float meanY);
   float getMeanInitialParticleY() const;
-  void setInitialParticleYStdDev(float devY);
   float getInitialParticleYStdDev() const;
-  void setMeanInitialParticleTheta(float meanTheta);
   float getMeanInitialParticleTheta() const;
-  void setInitialParticleThetaStdDev(float devTheta);
   float getInitialParticleThetaStdDev() const;
   Particle const& getParticle() const;
   Wall const& getWallHigh() const;
   Wall const& getWallLow() const;
+  Statistics getStats() const;
+  unsigned addNewIterationListener(Listeners<Particle const&>::Listener listener);
+  void removeNewIterationListener(unsigned listenerID);
+  unsigned addCollisionListener(Listeners<Particle const&>::Listener listener);
+  void removeCollisionListener(unsigned listenerID);
+  unsigned addIterationEndedListener(Listeners<Particle const&>::Listener listener);
+  void removeIterationEndedListener(unsigned listenerID);
 
  private:
-  void updateFinishLine();
   std::optional<glm::vec2> nextCollision() const;
 };
 
