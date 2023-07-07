@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <glm/geometric.hpp>
+#include <iostream>
 #include <random>
 #include <stdexcept>
 
@@ -77,7 +78,9 @@ void Simulation::update(double deltaMs) {
 void Simulation::immediate() {
   const float l = getL();
 
-  while (m_Particle.getPosition().x != l) {
+  bool isFinished = false;
+
+  while (!isFinished) {
     auto collisionPointOpt = nextCollision();
 
     if (collisionPointOpt.has_value()) {
@@ -103,6 +106,7 @@ void Simulation::immediate() {
       }
       m_Particle.setPosition(finalPositionOpt.value());
       m_IterationEndedListeners.notify(m_Particle);
+      isFinished = true;
     }
   }
 }
