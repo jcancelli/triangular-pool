@@ -72,7 +72,7 @@ void Simulation::newIteration() {
 }
 
 void Simulation::update(double deltaMs) {
-  double distanceToTravel = m_Particle.getSpeed() * deltaMs;
+  double distanceToTravel = m_Particle.getSpeed() * deltaMs / 1000.0;
 
   while (distanceToTravel > 0.0) {
     auto nextCollisionOpt = nextCollision();
