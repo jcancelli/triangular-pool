@@ -87,6 +87,7 @@ TEST_CASE("Testing median") {
   }
 }
 
+// https://exploringfinance.com/skewness-calculator/
 TEST_CASE("Testing skewness") {
   std::vector<double> values;
 
@@ -106,5 +107,28 @@ TEST_CASE("Testing skewness") {
     values.push_back(-4.0);
     values.push_back(-0.4);
     CHECK_EQ(skewness(values), doctest::Approx(-0.41275));
+  }
+}
+
+// https://exploringfinance.com/kurtosis-calculator/
+TEST_CASE("Testing kurtosis") {
+  std::vector<double> values;
+
+  SUBCASE("Testing n: 0") {
+    CHECK_THROWS(kurtosis(values));
+  }
+
+  SUBCASE("Testing n: 1") {
+    values.push_back(5);
+    CHECK_THROWS(kurtosis(values));
+  }
+
+  SUBCASE("Testing n: n") {
+    values.push_back(6.0);
+    values.push_back(-11.0);
+    values.push_back(3.0);
+    values.push_back(-4.0);
+    values.push_back(-0.4);
+    CHECK_EQ(kurtosis(values), doctest::Approx(1.60264));
   }
 }
