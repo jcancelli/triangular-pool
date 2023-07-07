@@ -118,7 +118,8 @@ void Statistics::updateStats() {
   m_SymmetryFinalY = skewness(yValues, m_MeanFinalY, m_StdDevFinalY);
   m_SymmetryFinalTheta = skewness(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
 
-  // TODO: implement flattening coef
+  m_FlatteningFinalY = kurtosis(yValues, m_MeanFinalY, m_StdDevFinalY);
+  m_FlatteningFinalTheta = kurtosis(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
 }
 
 std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
