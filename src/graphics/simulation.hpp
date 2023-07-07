@@ -5,19 +5,26 @@
 #include <string>
 
 #include "../simulation.hpp"
+#include "graphics.hpp"
+#include "particle.hpp"
+#include "wall.hpp"
 
-class SimulationGraphics {
+class SimulationGraphics : public Graphics {
  private:
-  sf::RenderWindow m_Window;
   Simulation const& m_Simulation;
+  WallGraphics m_UpperWallGraphics, m_LowerWallGraphics;
+  ParticleGraphics m_ParticleGraphics;
+  double m_CoordinatesScaling;
 
  public:
-  SimulationGraphics(unsigned width, unsigned height, Simulation const& simulation);
+  SimulationGraphics(Simulation const& simulation);
 
-  void show();
+  void update(double deltaTimeMs);
+  void setCoordinatesScaling(double factor);
+  double getCoordinatesScaling() const;
 
- private:
-  void processEvents();
+ protected:
+  void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
 #endif
