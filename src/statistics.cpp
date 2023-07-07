@@ -97,8 +97,10 @@ void Statistics::updateStats() {
   auto mapToFinalTheta = [](auto entry) { return entry.finalTheta; };
   std::transform(m_Entries.cbegin(), m_Entries.cend(), thetaValues.begin(), mapToFinalTheta);
 
-  m_StdDevFinalY = stdDev(yValues, m_MeanFinalY);
-  m_StdDevFinalTheta = stdDev(thetaValues, m_MeanFinalTheta);
+  if (n > 1) {
+    m_StdDevFinalY = stdDev(yValues, m_MeanFinalY);
+    m_StdDevFinalTheta = stdDev(thetaValues, m_MeanFinalTheta);
+  }
 
   // TODO: implement symmetry coef
   // TODO: implement flattening coef
