@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "geometry/linear_equation.hpp"
+#include "math/linear_equation.hpp"
 
 #include <doctest/doctest.h>
 
