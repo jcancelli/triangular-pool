@@ -24,31 +24,19 @@ int main(int argc, char* argv[]) {
     loadFonts();  // throws runtime_error if unable to find a font file
 
     Simulation simulation(config.r1, config.r2, config.l, config.meanInitialY,
-                          config.stddevInitialY, config.meanInitialTheta,
+                          config.stddevInitialY, radians(config.meanInitialTheta),
                           config.stddevInitialTheta);
 
     if (config.graphics) {
       GraphicsWindow window(simulation);
       window.show();
     } else {
-      simulation.addNewIterationListener([](Particle const& particle) {
-        std::cout << "\tStart\t\tpos: " << particle.getPosition()
-                  << ", theta: " << degrees(particle.getTheta()) << "°\n";
-      });
-      simulation.addCollisionListener([](Particle const& particle) {
-        std::cout << "\tCollision\tpos: " << particle.getPosition()
-                  << ", theta: " << degrees(particle.getTheta()) << "°\n";
-      });
-      simulation.addIterationEndedListener([](Particle const& particle) {
-        std::cout << "\tEnd\tpos: " << particle.getPosition()
-                  << ", theta: " << degrees(particle.getTheta()) << "°\n";
-      });
       for (int i = 0; i < config.iterations; i++) {
         std::cout << "Iteration #" << (i + 1) << "\n";
         simulation.newIteration();
         simulation.immediate();
-        std::cout << simulation.getStats() << "\n";
       }
+      std::cout << "\n------ Stats ------\n" << simulation.getStats() << "\n";
     }
   } catch (std::runtime_error const& e) {
     std::cout << e.what() << "\n";
