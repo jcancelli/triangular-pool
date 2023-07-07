@@ -26,7 +26,7 @@ un sistema delimitato da una barriera superiore e da una inferiore (vedi figura)
 
 In questa simulazione la particella partirà dalla posizione $(0, y_i)$ con
 una direzione definita dall'angolo $\theta_i$ e, a seguito di $n$ collisioni elastiche con
-le barriere, raggiungerà la posizione $(l, y_f)$ (o in determinate condizioni $(0, y_f)$)
+le barriere, raggiungerà la posizione $(l, y_f)$ (o in determinate condizioni $(0, y_f)$ )
 con direzione $\theta_f$.
 
 Di questa particella verranno tracciati:
