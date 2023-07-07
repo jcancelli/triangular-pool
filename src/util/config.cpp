@@ -39,4 +39,7 @@ void validateConfig(Config const& config) {
     std::cout << "Warning: since graphic mode is on, the parameter --n (number of iterations) will "
                  "be ignored\n";
   }
+  if (config.graphics && config.verboseOutput) {
+    std::cout << "Warning: since graphic mode is on, the parameter --verbose will be ignored\n";
+  }
 }
