@@ -72,7 +72,6 @@ void Simulation::newIteration() {
 }
 
 void Simulation::update(double deltaMs) {
-  // TODO: Implement update
 }
 
 void Simulation::immediate() {
@@ -81,22 +80,12 @@ void Simulation::immediate() {
   bool isFinished = false;
 
   while (!isFinished) {
-    auto collisionPointOpt = nextCollision();
+    auto collisionOpt = nextCollision();
 
-    if (collisionPointOpt.has_value()) {
-      const glm::vec2 collisionPoint = collisionPointOpt.value();
-      glm::vec2 wallNormal;
-      if (collisionPoint.y > 0) {
-        auto wallNormals = m_WallHigh.getNormals();
-        // Get the normal that is pointing toward the x axis
-        wallNormal = wallNormals.first.y < 0 ? wallNormals.first : wallNormals.second;
-      } else {
-        auto wallNormals = m_WallLow.getNormals();
-        // Get the normal that is pointing toward the x axis
-        wallNormal = wallNormals.first.y > 0 ? wallNormals.first : wallNormals.second;
-      }
-      m_Particle.setPosition(collisionPoint);
-      m_Particle.reflect(wallNormal);
+    if (collisionOpt.has_value()) {
+      auto collision = collisionOpt.value();
+      m_Particle.setPosition(collision.position);
+      m_Particle.reflect(collision.wallNormal);
       m_CollisionListeners.notify(m_Particle);
     } else {                                // Check if particle reached final position
       auto finalPositionOpt = intersection(m_Particle.getRay(), m_FinishLine);
@@ -187,11 +176,28 @@ void Simulation::removeIterationEndedListener(unsigned listenerID) {
   m_IterationEndedListeners.remove(listenerID);
 }
 
-std::optional<glm::vec2> Simulation::nextCollision() const {
-  Ray particleRay = m_Particle.getRay();
-
-  if (m_Particle.getTheta() > 0) {
-    return intersection(particleRay, m_WallHigh);
+std::optional<Simulation::Collision> Simulation::nextCollision() const {
+  auto particleRay = m_Particle.getRay();
+  auto& collidedWall = m_Particle.getTheta() > 0 ? m_WallHigh : m_WallLow;
+  auto collisionPointOpt = intersection(particleRay, collidedWall);
+  if (!collisionPointOpt.has_value()) {
+    return {};
   }
-  return intersection(particleRay, m_WallLow);
+  auto collisionPoint = collisionPointOpt.value();
+  auto wallNormal = wallNormalFromCollisionPoint(collisionPoint);
+  return Collision{.position = collisionPoint, .wallNormal = wallNormal};
+}
+
+glm::vec2 Simulation::wallNormalFromCollisionPoint(glm::vec2 const& collisionPoint) const {
+  glm::vec2 wallNormal;
+  if (collisionPoint.y > 0) {
+    auto wallNormals = m_WallHigh.getNormals();
+    // Get the normal that is pointing toward the x axis
+    wallNormal = wallNormals.first.y < 0 ? wallNormals.first : wallNormals.second;
+  } else {
+    auto wallNormals = m_WallLow.getNormals();
+    // Get the normal that is pointing toward the x axis
+    wallNormal = wallNormals.first.y > 0 ? wallNormals.first : wallNormals.second;
+  }
+  return wallNormal;
 }

@@ -49,7 +49,14 @@ class Simulation {
   void removeIterationEndedListener(unsigned listenerID);
 
  private:
-  std::optional<glm::vec2> nextCollision() const;
+  struct Collision {
+    glm::vec2 position;
+    glm::vec2 wallNormal;
+  };
+
+ private:
+  std::optional<Collision> nextCollision() const;
+  glm::vec2 wallNormalFromCollisionPoint(glm::vec2 const& collisionPoint) const;
 };
 
 #endif
