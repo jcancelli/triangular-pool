@@ -35,6 +35,10 @@ WallGraphics::WallGraphics(Wall const& wall) : m_Wall{wall}, m_CoordinatesScalin
   updatePointsText();
 }
 
+void WallGraphics::update(double deltaTimeMs) {
+  // no op
+}
+
 void WallGraphics::setCoordinatesScaling(double factor) {
   m_CoordinatesScaling = factor;
   m_Line.setSize(sf::Vector2f(m_Wall.length() * m_CoordinatesScaling, LINE_THICKNESS));
