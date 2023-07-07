@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
     Simulation simulation(config.r1, config.r2, config.l, config.meanInitialY,
                           config.stddevInitialY, radians(config.meanInitialTheta),
-                          config.stddevInitialTheta);
+                          radians(config.stddevInitialTheta));
     simulation.setVerboseOutput(config.verboseOutput);
 
     if (config.graphics) {
