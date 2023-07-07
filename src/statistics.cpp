@@ -4,6 +4,7 @@
 #include <cmath>
 #include <numeric>
 
+#include "math/angles.hpp"
 #include "math/statistics.hpp"
 
 Statistics::Statistics()
@@ -32,6 +33,7 @@ void Statistics::addCollision(glm::vec2 const& collisionPoint) {
 void Statistics::commitEntry(glm::vec2 const& finalPosition, float finalTheta) {
   m_CurrentEntry.finalPosition = finalPosition;
   m_CurrentEntry.finalTheta = finalTheta;
+  m_Entries.push_back(m_CurrentEntry);
   updateStats();
 }
 
@@ -111,29 +113,30 @@ void Statistics::updateStats() {
 std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   const auto entries = stats.getEntries();
 
-  os << "N:\t" << entries.size() << "\tNumber of iterations\n";
+  os << "N:\t\t" << entries.size() << "\t\tNumber of iterations\n";
 
-  os << "mean Y:\t" << stats.getMeanFinalY() << "\tMean final Y\n";
-  os << "stddev y:\t" << stats.getStdDevFinalY() << "\tStandard deviation final Y\n";
-  os << "sym Y:\t" << stats.getSymmetryFinalY() << "\tSymmetry coefficient final Y\n";
-  os << "flat Y:\t" << stats.getFlatteningFinalY() << "\tFlattening coefficient final Y\n";
+  os << "mean Y:\t\t" << stats.getMeanFinalY() << "\t\tMean final Y\n";
+  os << "stddev y:\t" << stats.getStdDevFinalY() << "\t\tStandard deviation final Y\n";
+  os << "sym Y:\t\t" << stats.getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
+  os << "flat Y:\t\t" << stats.getFlatteningFinalY() << "\t\tFlattening coefficient final Y\n";
 
-  os << "mean theta:\t" << stats.getMeanFinalTheta() << "\tMean final particle direction angle\n";
+  os << "mean theta:\t" << stats.getMeanFinalTheta()
+     << "°\t\tMean final particle direction angle\n";
   os << "stddev theta:\t" << stats.getStdDevFinalTheta()
-     << "\tStandard deviation final particle direction angle\n";
+     << "\t\tStandard deviation final particle direction angle\n";
   os << "sym theta:\t" << stats.getSymmetryFinalTheta()
-     << "\tSymmetry coefficient final particle direction angle\n";
+     << "\t\tSymmetry coefficient final particle direction angle\n";
   os << "flat theta:\t" << stats.getFlatteningFinalTheta()
-     << "\tFlattening coefficient final particle direction angle\n";
+     << "\t\tFlattening coefficient final particle direction angle\n";
 
   int i = 1;
-  os << "Details:\n";
+  os << "------ Details ------\n";
   for (auto const& entry : entries) {
-    os << "Symulation #" << i << "\n";
+    os << "Iteration #" << i << "\n";
     os << "\tInitial position:\t" << entry.initialPosition << "\n";
-    os << "\tInitial theta:\t" << entry.initialTheta << "\n";
-    os << "\tFinal position:\t" << entry.finalPosition << "\n";
-    os << "\tFinal theta:\t" << entry.finalTheta << "\n";
+    os << "\tInitial theta:\t\t" << degrees(entry.initialTheta) << "°\n";
+    os << "\tFinal position:\t\t" << entry.finalPosition << "\n";
+    os << "\tFinal theta:\t\t" << degrees(entry.finalTheta) << "°\n";
 
     os << "\tCollisions:\n";
     for (auto const& collision : entry.collisions) {
