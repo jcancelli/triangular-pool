@@ -155,6 +155,14 @@ Statistics Simulation::getStats() const {
   return m_Stats;
 }
 
+void Simulation::setVerboseOutput(bool verbose) {
+  m_Stats.setVerboseOutput(verbose);
+}
+
+bool Simulation::isVerboseOutput() const {
+  return m_Stats.isVerboseOutput();
+}
+
 unsigned Simulation::addNewIterationListener(Listeners<Particle const&>::Listener listener) {
   return m_NewIterationListeners.add(listener);
 }

@@ -39,6 +39,8 @@ class Simulation {
   Wall const& getWallHigh() const;
   Wall const& getWallLow() const;
   Statistics getStats() const;
+  void setVerboseOutput(bool verbose);
+  bool isVerboseOutput() const;
   unsigned addNewIterationListener(Listeners<Particle const&>::Listener listener);
   void removeNewIterationListener(unsigned listenerID);
   unsigned addCollisionListener(Listeners<Particle const&>::Listener listener);
