@@ -7,6 +7,7 @@ struct LinearEquation {
   double gradient;
   double offset = 0.0;
   double operator()(double x) const;
+  bool isValid() const;
 };
 
 std::ostream& operator<<(std::ostream& os, LinearEquation const& equation);
