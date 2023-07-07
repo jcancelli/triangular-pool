@@ -17,7 +17,8 @@ Statistics::Statistics()
       m_FlatteningFinalY{0.0},
       m_FlatteningFinalTheta{0.0},
       m_FinalYSum{0.0},
-      m_FinalThetaSum{0.0} {
+      m_FinalThetaSum{0.0},
+      m_VerboseOutput{true} {
 }
 
 void Statistics::createNewEntry(glm::vec2 const& initialPosition, float initialTheta) {
@@ -82,6 +83,14 @@ float Statistics::getFlatteningFinalTheta() const {
   return m_FlatteningFinalTheta;
 }
 
+void Statistics::setVerboseOutput(bool verbose) {
+  m_VerboseOutput = verbose;
+}
+
+bool Statistics::isVerboseOutput() const {
+  return m_VerboseOutput;
+}
+
 void Statistics::updateStats() {
   m_FinalYSum += m_CurrentEntry.finalPosition.y;
   m_FinalThetaSum += m_CurrentEntry.finalTheta;
@@ -131,21 +140,23 @@ std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   os << "flat theta:\t" << stats.getFlatteningFinalTheta()
      << "\t\tFlattening coefficient final particle direction angle\n";
 
-  int i = 1;
-  os << "------ Details ------\n";
-  for (auto const& entry : entries) {
-    os << "Iteration #" << i << "\n";
-    os << "\tInitial position:\t" << entry.initialPosition << "\n";
-    os << "\tInitial theta:\t\t" << degrees(entry.initialTheta) << "°\n";
-    os << "\tFinal position:\t\t" << entry.finalPosition << "\n";
-    os << "\tFinal theta:\t\t" << degrees(entry.finalTheta) << "°\n";
+  if (stats.isVerboseOutput()) {
+    int i = 1;
+    os << "------ Details ------\n";
+    for (auto const& entry : entries) {
+      os << "Iteration #" << i << "\n";
+      os << "\tInitial position:\t" << entry.initialPosition << "\n";
+      os << "\tInitial theta:\t\t" << degrees(entry.initialTheta) << "°\n";
+      os << "\tFinal position:\t\t" << entry.finalPosition << "\n";
+      os << "\tFinal theta:\t\t" << degrees(entry.finalTheta) << "°\n";
 
-    os << "\tCollisions:\n";
-    for (auto const& collision : entry.collisions) {
-      os << "\t\t" << collision << "\n";
+      os << "\tCollisions:\n";
+      for (auto const& collision : entry.collisions) {
+        os << "\t\t" << collision << "\n";
+      }
+
+      i++;
     }
-
-    i++;
   }
   return os;
 }

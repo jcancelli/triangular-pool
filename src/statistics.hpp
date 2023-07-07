@@ -28,6 +28,7 @@ class Statistics {
   float m_FlatteningFinalTheta;
   float m_FinalYSum;
   float m_FinalThetaSum;
+  bool m_VerboseOutput;
 
  public:
   Statistics();
@@ -46,6 +47,8 @@ class Statistics {
   float getSymmetryFinalTheta() const;
   float getFlatteningFinalY() const;
   float getFlatteningFinalTheta() const;
+  void setVerboseOutput(bool verbose);
+  bool isVerboseOutput() const;
 
  private:
   void updateStats();
