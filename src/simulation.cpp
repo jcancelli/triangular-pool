@@ -128,6 +128,7 @@ void Simulation::immediate() {
     }
 
     // Particle will reach final position
+
     auto particleRay = m_Particle.getRay();
     auto finalPositionOpt = intersection(particleRay, m_FinishLine);
     if (!finalPositionOpt.has_value()) {  // Check if particle will come out of the back
