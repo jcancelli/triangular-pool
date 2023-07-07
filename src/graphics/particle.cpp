@@ -42,7 +42,7 @@ void ParticleGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) c
 
 void ParticleGraphics::updatePosition() {
   auto pos = m_Particle.getPosition();
-  m_Point.setPosition(pos.x * m_CoordinatesScalingFactor, pos.y * m_CoordinatesScalingFactor);
+  m_Point.setPosition(pos.x * m_CoordinatesScalingFactor, -pos.y * m_CoordinatesScalingFactor);
 }
 
 void ParticleGraphics::updateText() {
@@ -59,7 +59,7 @@ void ParticleGraphics::updateVelocityLine() {
   auto pos = m_Particle.getPosition();
   m_VelocityLine.setSize(
       sf::Vector2f(m_Particle.getSpeed() * m_CoordinatesScalingFactor, VELOCITY_LINE_THICKNESS));
-  m_VelocityLine.setRotation(degrees(theta));
+  m_VelocityLine.setRotation(degrees(-theta));
   m_VelocityLine.setPosition(pos.x * m_CoordinatesScalingFactor,
-                             pos.y * m_CoordinatesScalingFactor);
+                             -pos.y * m_CoordinatesScalingFactor);
 }
