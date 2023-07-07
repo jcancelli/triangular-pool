@@ -17,8 +17,14 @@ double stdDev(std::vector<T> const& values, std::optional<double> meanOpt = {});
 template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
 double median(std::vector<T> values);
 
+// https://exploringfinance.com/skewness-calculator/
 template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
 double skewness(std::vector<T> const& values, std::optional<double> meanOpt = {},
+                std::optional<double> stdDevOpt = {});
+
+// https://exploringfinance.com/kurtosis-calculator/
+template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
+double kurtosis(std::vector<T> const& values, std::optional<double> meanOpt = {},
                 std::optional<double> stdDevOpt = {});
 
 #include "statistics.inl"

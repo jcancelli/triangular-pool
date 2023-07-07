@@ -59,6 +59,9 @@ double median(std::vector<T> values) {
 template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
 double skewness(std::vector<T> const& values, std::optional<double> meanOpt,
                 std::optional<double> stdDevOpt) {
+  if (values.size() < 2) {
+    throw std::invalid_argument("Error: Cannot calculate skewness of n < 2 elements");
+  }
   if (!meanOpt.has_value()) {
     meanOpt = mean(values);
   }
@@ -71,6 +74,27 @@ double skewness(std::vector<T> const& values, std::optional<double> meanOpt,
   double numerator = std::accumulate(values.cbegin(), values.cend(), 0.0, computeNum);
   double denominator = (double(values.size()) - 1) * std::pow(stdDevOpt.value(), 3);
   return numerator / denominator;
+}
+
+template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
+double kurtosis(std::vector<T> const& values, std::optional<double> meanOpt,
+                std::optional<double> stdDevOpt) {
+  const int n = values.size();
+  if (n < 2) {
+    throw std::invalid_argument("Error: Cannot calculate kurtosis of n < 2 elements");
+  }
+  if (!meanOpt.has_value()) {
+    meanOpt = mean(values);
+  }
+  if (!stdDevOpt.has_value()) {
+    stdDevOpt = stdDev(values, meanOpt);
+  }
+  auto computeNum = [meanOpt](auto sum, auto val) {
+    return sum + std::pow(val - meanOpt.value(), 4);
+  };
+  double num = std::accumulate(values.cbegin(), values.cend(), 0.0, computeNum);
+  double denom = (n - 1.0) * std::pow(stdDevOpt.value(), 4);
+  return num / denom;
 }
 
 #endif
