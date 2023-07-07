@@ -132,10 +132,10 @@ std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   os << "sym Y:\t\t" << stats.getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
   os << "flat Y:\t\t" << stats.getFlatteningFinalY() << "\t\tFlattening coefficient final Y\n";
 
-  os << "mean theta:\t" << stats.getMeanFinalTheta()
+  os << "mean theta:\t" << degrees(stats.getMeanFinalTheta())
      << "°\t\tMean final particle direction angle\n";
-  os << "stddev theta:\t" << stats.getStdDevFinalTheta()
-     << "\t\tStandard deviation final particle direction angle\n";
+  os << "stddev theta:\t" << degrees(stats.getStdDevFinalTheta())
+     << "°\t\tStandard deviation final particle direction angle\n";
   os << "sym theta:\t" << stats.getSymmetryFinalTheta()
      << "\t\tSymmetry coefficient final particle direction angle\n";
   os << "flat theta:\t" << stats.getFlatteningFinalTheta()
