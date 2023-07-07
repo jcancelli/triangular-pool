@@ -3,6 +3,7 @@
 
 #include "graphics/font.hpp"
 #include "graphics/window.hpp"
+#include "math/angles.hpp"
 #include "simulation.hpp"
 #include "util/arguments.hpp"
 
@@ -30,9 +31,23 @@ int main(int argc, char* argv[]) {
       GraphicsWindow window(simulation);
       window.show();
     } else {
+      simulation.addNewIterationListener([](Particle const& particle) {
+        std::cout << "\tStart\t\tpos: " << particle.getPosition()
+                  << ", theta: " << degrees(particle.getTheta()) << "°\n";
+      });
+      simulation.addCollisionListener([](Particle const& particle) {
+        std::cout << "\tCollision\tpos: " << particle.getPosition()
+                  << ", theta: " << degrees(particle.getTheta()) << "°\n";
+      });
+      simulation.addIterationEndedListener([](Particle const& particle) {
+        std::cout << "\tEnd\tpos: " << particle.getPosition()
+                  << ", theta: " << degrees(particle.getTheta()) << "°\n";
+      });
       for (int i = 0; i < config.iterations; i++) {
+        std::cout << "Iteration #" << (i + 1) << "\n";
         simulation.newIteration();
         simulation.immediate();
+        std::cout << simulation.getStats() << "\n";
       }
     }
   } catch (std::runtime_error const& e) {
