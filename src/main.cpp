@@ -32,7 +32,6 @@ int main(int argc, char* argv[]) {
       window.show();
     } else {
       for (int i = 0; i < config.iterations; i++) {
-        std::cout << "Iteration #" << (i + 1) << "\n";
         simulation.newIteration();
         simulation.immediate();
       }
