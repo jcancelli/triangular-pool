@@ -11,7 +11,7 @@ GraphicsWindow::GraphicsWindow(Simulation& simulation)
   double maxCoordinate =
       std::max(simulation.getL(), std::max(simulation.getR1(), simulation.getR2()));
   m_SimulationGraphics.setPosition(WINDOW_PADDING, WINDOW_SIZE / 2);
-  m_SimulationGraphics.setCoordinatesScaling((WINDOW_SIZE - WINDOW_PADDING * 2) / maxCoordinate);
+  m_SimulationGraphics.setCoordsScaling((WINDOW_SIZE - WINDOW_PADDING * 2) / maxCoordinate);
   m_Simulation.addIterationEndedListener([this](auto particle) {  //
     this->m_Simulation.newIteration();                            //
   });                                                             //
@@ -28,7 +28,7 @@ void GraphicsWindow::show() {
     if (elapsed.asSeconds() >= IDEAL_FRAMETIME) {
       redraw = true;
       m_Simulation.update(elapsed.asMilliseconds());
-      m_SimulationGraphics.update(elapsed.asMilliseconds());
+      m_SimulationGraphics.update(elapsed);
       m_Clock.restart();
     }
 
