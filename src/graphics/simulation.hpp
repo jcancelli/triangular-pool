@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <vector>
 
 #include "../simulation.hpp"
 #include "graphics.hpp"
@@ -11,17 +12,16 @@
 
 class SimulationGraphics : public Graphics {
  private:
-  Simulation const& m_Simulation;
+  Simulation& m_Simulation;
   WallGraphics m_UpperWallGraphics, m_LowerWallGraphics;
   ParticleGraphics m_ParticleGraphics;
-  double m_CoordinatesScaling;
+  std::vector<PointGraphics> m_CollisionPointsGraphics;
+  std::vector<PointGraphics> m_FinalPositionsPointsGraphics;
 
  public:
-  SimulationGraphics(Simulation const& simulation);
+  SimulationGraphics(Simulation& simulation);
 
-  void update(double deltaTimeMs);
-  void setCoordinatesScaling(double factor);
-  double getCoordinatesScaling() const;
+  void update(sf::Time const& delta) override;
 
  protected:
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
