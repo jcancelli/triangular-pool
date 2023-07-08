@@ -8,6 +8,7 @@ GitHub: *https://github.com/jcancelli/triangular-pool*
 	- [Abstract](#abstract)
 	- [Input](#input)
 	- [Output](#output)
+	- [Note](#note)
 - [Compilazione](#compilazione)
 	- [Dipendenze](#dipendenze)
 	- [Comandi](#comandi)
@@ -15,6 +16,7 @@ GitHub: *https://github.com/jcancelli/triangular-pool*
 - [Esecuzione](#esecuzione)
 	- [Argomenti CLI](#argomenti-cli)
 	- [Modalità d'esecuzione](#modalità-desecuzione)
+- [Analisi](#analisi)
 
 ## Introduzione
 
@@ -69,6 +71,15 @@ Una volta terminato il programma verranno forniti in output:
 
 
 Ulteriori informazioni su input e output nella sezione [Argomenti CLI](#argomenti-cli).
+
+
+### Note
+
+- Al momento il programma considera come valide (e include quindi nelle statistiche)
+anche particelle che "escono dal retro", ovvero particelle con un $\theta_f$ superiore a 
+$90°$ (o inferiore a $-90°$) la cui posizione finale risulta quindi $(0, y_f)$. Ho intenzione
+di modificare il programma in modo che tratti questo caso come iterazione "fallita" e 
+ne tracci le statistiche in modo separato.
 
 [Torna all'indice](#biliardo-triangolare)
 
@@ -198,5 +209,49 @@ della simulazione in real time. E' possibile controllare la velocità della simu
 grafica passando la flag `--speed=<number>`.
 
 ![Screenshot Graphics](resources/readme/screenshot-graphics.png)
+
+[Torna all'indice](#biliardo-triangolare)
+
+
+## Analisi
+
+Mi piacerebbe inoltre parlare di un piccolo esperimento che ho provato a svolgere
+(proposto tra l'altro dalla consegna per questo progetto).
+L'esperimento consiste nell'eseguire più volte la simulazione mantenendo i medesimi parametri 
+tra un'esecuzione e l'altra, incrementando però il valore di $l$ con ogni nuova esecuzione.
+
+Di seguito riporto i grafici che rappresentano l'andamento delle variabili di
+output all'incrementare di $l$. Sull'asse delle $x$ vi è il valore di $l$ mentre
+sull'asse $y$ vi è il valore della variabile.
+
+I parametri usati per ognuna delle 30 simulazioni qui riportate (con l'esclusione
+ovviamente di $l$) sono i seguenti.
+
+| Parametro | Valore |
+|-----------|--------|
+| `--n` | 1000 |
+| `--mean-y` | 0 |
+| `--std-dev-y` | 0.15 |
+| `--mean-theta` | 0 |
+| `--std-dev-theta` | 10 |
+| `--r1` | 2 *lasciato a valore di default* |
+| `--r2` | 1 *lasciato a valore di default* |
+
+
+
+![Mean final y](resources/readme/mean-final-y.png)
+![Standard deviation final y](resources/readme/std-dev-final-y.png)
+![Skewness final y](resources/readme/skewness-final-y.png)
+![Kurtosis final y](resources/readme/kurtosis-final-y.png)
+
+![Mean final theta](resources/readme/mean-final-theta.png)
+![Standard deviation final theta](resources/readme/std-dev-final-theta.png)
+![Skewness final theta](resources/readme/skewness-final-theta.png)
+![Kurtosis final theta](resources/readme/kurtosis-final-theta.png)
+
+![Average collisions](resources/readme/avg-collisions.png)
+
+E' però opportuno ricordare che, come anche riportato nella sezione [Note](#note),
+in questi dati sono incluse anche le $y_f$ di particelle "usite dal retro" (vedi [Note](#note)).
 
 [Torna all'indice](#biliardo-triangolare)
