@@ -65,7 +65,7 @@ void Simulation::newIteration() {
 
   m_Particle.setPosition(glm::vec2(0, initialY));
   m_Particle.setTheta(initialTheta);
-  m_Particle.setSpeed(getL() / 10);
+  m_Particle.setSpeed(getL() / 2.2);
 
   m_NewIterationListeners.notify(m_Particle);
 }
