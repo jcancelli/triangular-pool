@@ -2,7 +2,6 @@
 #define GRAPHICS_WALL_HPP
 
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
 
 #include "../wall.hpp"
 #include "graphics.hpp"

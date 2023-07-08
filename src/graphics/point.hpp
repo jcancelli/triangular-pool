@@ -2,7 +2,6 @@
 #define GRAPHICS_POINT_HPP
 
 #include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
 
 #include "graphics.hpp"

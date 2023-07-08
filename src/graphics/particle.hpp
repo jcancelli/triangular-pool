@@ -2,7 +2,6 @@
 #define GRAPHICS_PARTICLE_HPP
 
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
 
 #include "../particle.hpp"
 #include "graphics.hpp"
