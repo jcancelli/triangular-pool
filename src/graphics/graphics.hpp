@@ -2,6 +2,7 @@
 #define GRAPHICS_GRAPHICS_HPP
 
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/System/Clock.hpp>
 
