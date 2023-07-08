@@ -5,12 +5,14 @@
 
 #include "../simulation.hpp"
 #include "simulation.hpp"
+#include "statistics.hpp"
 
 class GraphicsWindow {
  private:
   sf::RenderWindow m_Window;
   sf::Clock m_Clock;
   SimulationGraphics m_SimulationGraphics;
+  StatisticsGraphics m_StatisticsGraphics;
   Simulation& m_Simulation;
 
  public:

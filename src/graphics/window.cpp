@@ -7,11 +7,13 @@ GraphicsWindow::GraphicsWindow(Simulation& simulation)
     : m_Window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Triangular Pool",
                sf::Style::Close | sf::Style::Titlebar, sf::ContextSettings(0, 0, 8)),
       m_SimulationGraphics(simulation),
+      m_StatisticsGraphics(simulation),
       m_Simulation(simulation) {
   double maxCoordinate =
       std::max(simulation.getL(), std::max(simulation.getR1(), simulation.getR2()));
   m_SimulationGraphics.setPosition(WINDOW_PADDING, WINDOW_SIZE / 2);
   m_SimulationGraphics.setCoordsScaling((WINDOW_SIZE - WINDOW_PADDING * 2) / maxCoordinate);
+  m_StatisticsGraphics.setPosition(10, 10);
   m_Simulation.addIterationEndedListener([this](auto particle) {  //
     this->m_Simulation.newIteration();                            //
   });                                                             //
@@ -29,6 +31,7 @@ void GraphicsWindow::show() {
       redraw = true;
       m_Simulation.update(elapsed.asMilliseconds());
       m_SimulationGraphics.update(elapsed);
+      m_StatisticsGraphics.update(elapsed);
       m_Clock.restart();
     }
 
@@ -38,6 +41,7 @@ void GraphicsWindow::show() {
       redraw = false;
       m_Window.clear(sf::Color(0x999999FF));
       m_Window.draw(m_SimulationGraphics);
+      m_Window.draw(m_StatisticsGraphics);
       m_Window.display();
     }
   }
