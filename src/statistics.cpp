@@ -51,6 +51,10 @@ Statistics::Entry Statistics::getCurrentEntry() const {
   return m_CurrentEntry;
 }
 
+int Statistics::getIterationsCount() const {
+  return m_Entries.size();
+}
+
 float Statistics::getMeanFinalY() const {
   return m_MeanFinalY;
 }
@@ -125,7 +129,7 @@ void Statistics::updateStats() {
 std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   const auto entries = stats.getEntries();
 
-  os << "N:\t\t" << entries.size() << "\t\tNumber of iterations\n";
+  os << "N:\t\t" << stats.getIterationsCount() << "\t\tNumber of iterations\n";
 
   os << "mean Y:\t\t" << stats.getMeanFinalY() << "\t\tMean final Y\n";
   os << "stddev y:\t" << stats.getStdDevFinalY() << "\t\tStandard deviation final Y\n";

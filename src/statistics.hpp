@@ -39,6 +39,7 @@ class Statistics {
   void clear();
   std::vector<Entry> getEntries() const;
   Entry getCurrentEntry() const;
+  int getIterationsCount() const;
   float getMeanFinalY() const;
   float getMeanFinalTheta() const;
   float getStdDevFinalY() const;
