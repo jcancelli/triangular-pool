@@ -10,6 +10,8 @@ class Graphics : public sf::Drawable, public sf::Transformable {
   double m_CoordsScaling;
 
  public:
+  Graphics();
+
   virtual void update(sf::Time const& delta);
   void setCoordsScaling(double factor);
   double getCoordsScaling() const;
