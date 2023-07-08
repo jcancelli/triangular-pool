@@ -46,11 +46,14 @@ void validateConfig(Config const& config) {
     std::cout << "Warning: since graphic mode is on, the parameter --n (number of iterations) will "
                  "be ignored.\n";
   }
-  if (config.graphics && config.verboseOutput) {
-    std::cout << "Warning: since graphic mode is on, the parameter --verbose will be ignored.\n";
-  }
   if (!config.graphics && config.simulationSpeed != 1.0) {
     std::cout << "Warning: since graphic mode is off, the parameter --speed will be ignored.\n";
+  }
+  if (config.outputAsCSV && config.verboseOutput) {
+    std::cout << "Warning: cannot output both as verbose and as CSV.\n";
+  }
+  if (config.outputCSVHeaders && !config.outputAsCSV) {
+    std::cout << "Warning: to output csv headers one must also add the --output-csv flag.\n";
   }
 }
 

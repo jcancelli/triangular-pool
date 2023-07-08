@@ -7,6 +7,8 @@
 #include "simulation.hpp"
 #include "util/arguments.hpp"
 
+static void printOutput(pool::Simulation const&, pool::util::Config const&);
+
 int main(int argc, char* argv[]) {
   try {
     pool::util::Config config;
@@ -37,8 +39,10 @@ int main(int argc, char* argv[]) {
         simulation.newIteration();
         simulation.immediate();
       }
-      std::cout << "\n------ Stats ------\n" << simulation.getStats() << "\n";
     }
+
+    printOutput(simulation, config);
+
   } catch (std::runtime_error const& e) {
     std::cout << e.what() << "\n";
     return EXIT_FAILURE;
@@ -49,5 +53,23 @@ int main(int argc, char* argv[]) {
   } catch (...) {
     std::cout << "Unknown error\n";
     return EXIT_FAILURE;
+  }
+}
+
+static void printOutput(pool::Simulation const& simulation, pool::util::Config const& config) {
+  if (config.outputAsCSV) {
+    if (config.outputCSVHeaders) {
+      std::cout << "r1;r2;l;n;mean-y;mean-theta;mean-collisions;std-dev-y;std-dev-theta;skew-y;"
+                   "skew-theta;flat-y;flat-theta;mean-initial-y;std-dev-initial-y;mean-initial-"
+                   "theta;std-dev-initial-theta\n";
+    }
+    std::cout << simulation.getR1() << ";" << simulation.getR2() << ";" << simulation.getL() << ";"
+              << simulation.getStats().asCSV() << ";" << simulation.getMeanInitialParticleY() << ";"
+              << simulation.getInitialParticleYStdDev() << ";"
+              << simulation.getMeanInitialParticleTheta() << ";"
+              << simulation.getInitialParticleThetaStdDev() << "\n";
+  } else {
+    std::cout << "\n------ Stats ------\n";
+    std::cout << simulation.getStats() << "\n";
   }
 }

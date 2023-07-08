@@ -55,6 +55,7 @@ class Statistics {
   float getFlatteningFinalTheta() const;
   void setVerboseOutput(bool verbose);
   bool isVerboseOutput() const;
+  std::string asCSV() const;
 
  private:
   void updateStats();

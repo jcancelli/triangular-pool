@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numeric>
+#include <sstream>
 
 #include "math/angles.hpp"
 #include "math/statistics.hpp"
@@ -101,6 +102,21 @@ void Statistics::setVerboseOutput(bool verbose) {
 
 bool Statistics::isVerboseOutput() const {
   return m_VerboseOutput;
+}
+
+std::string Statistics::asCSV() const {
+  std::stringstream out;
+  out << getIterationsCount() << ";";
+  out << getMeanFinalY() << ";";
+  out << math::degrees(getMeanFinalTheta()) << ";";
+  out << getMeanCollisions() << ";";
+  out << getStdDevFinalY() << ";";
+  out << math::degrees(getStdDevFinalTheta()) << ";";
+  out << getSymmetryFinalY() << ";";
+  out << getSymmetryFinalTheta() << ";";
+  out << getFlatteningFinalTheta() << ";";
+  out << getFlatteningFinalY();
+  return out.str();
 }
 
 void Statistics::updateStats() {
