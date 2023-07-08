@@ -7,6 +7,11 @@
 #include "simulation.hpp"
 #include "util/arguments.hpp"
 
+/* TODO: Change how the simulation handles particles coming out of the back. The simulation should
+         consider iterations where the particles comes out of the back as "failed" and should track
+         failed iterations statistics.
+*/
+
 static void printOutput(pool::Simulation const&, pool::util::Config const&);
 
 int main(int argc, char* argv[]) {
