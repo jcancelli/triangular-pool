@@ -252,6 +252,6 @@ ovviamente di $l$) sono i seguenti.
 ![Average collisions](resources/readme/avg-collisions.png)
 
 E' però opportuno ricordare che, come anche riportato nella sezione [Note](#note),
-in questi dati sono incluse anche le $y_f$ di particelle "usite dal retro" (vedi [Note](#note)).
+in questi dati sono incluse anche le $y_f$ e $\theta_f$ di particelle "usite dal retro" (vedi [Note](#note)).
 
 [Torna all'indice](#biliardo-triangolare)
