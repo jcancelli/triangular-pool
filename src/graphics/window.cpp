@@ -1,5 +1,7 @@
 #include "window.hpp"
 
+#include "../util/unused.hpp"
+
 #define WINDOW_SIZE 700
 #define WINDOW_PADDING 200
 
@@ -14,9 +16,10 @@ GraphicsWindow::GraphicsWindow(Simulation& simulation)
   m_SimulationGraphics.setPosition(WINDOW_PADDING, WINDOW_SIZE / 2);
   m_SimulationGraphics.setCoordsScaling((WINDOW_SIZE - WINDOW_PADDING * 2) / maxCoordinate);
   m_StatisticsGraphics.setPosition(10, 10);
-  m_Simulation.addIterationEndedListener([this](auto particle) {  //
-    this->m_Simulation.newIteration();                            //
-  });                                                             //
+  m_Simulation.addIterationEndedListener([this](auto particle) {
+    UNUSED(particle);
+    this->m_Simulation.newIteration();
+  });
 }
 
 void GraphicsWindow::show() {

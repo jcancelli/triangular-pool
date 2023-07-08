@@ -7,9 +7,12 @@
 #include "font.hpp"
 
 StatisticsGraphics::StatisticsGraphics(Simulation& simulation) : m_Simulation(simulation) {
-  simulation.addIterationEndedListener([this](auto particle) { updateText(); });
+  simulation.addIterationEndedListener([this](auto particle) {
+    UNUSED(particle);
+    updateText();
+  });
   m_Labels.setFont(g_FontLucindaSansRegular);
-  m_Labels.setColor(sf::Color::Black);
+  m_Labels.setFillColor(sf::Color::Black);
   m_Labels.setCharacterSize(15);
 
   std::stringstream out;
@@ -26,7 +29,7 @@ StatisticsGraphics::StatisticsGraphics(Simulation& simulation) : m_Simulation(si
   m_Labels.setString(out.str());
 
   m_Values.setFont(g_FontLucindaSansRegular);
-  m_Values.setColor(sf::Color::Red);
+  m_Values.setFillColor(sf::Color::Red);
   m_Values.setCharacterSize(15);
   m_Values.setPosition(m_Labels.getLocalBounds().width + 10, 0);
   updateText();

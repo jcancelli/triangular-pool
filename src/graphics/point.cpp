@@ -1,5 +1,6 @@
 #include "point.hpp"
 
+#include "../util/unused.hpp"
 #include "font.hpp"
 
 static const unsigned DEFAULT_RADIUS = 5;
@@ -18,6 +19,7 @@ PointGraphics::PointGraphics() : m_TextSide(DEFAULT_TEXT_SIDE) {
 }
 
 void PointGraphics::update(sf::Time const& delta) {
+  UNUSED(delta);
   updateText();
 }
 

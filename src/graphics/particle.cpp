@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "../math/angles.hpp"
+#include "../util/unused.hpp"
 
 static const double POINT_RADIUS = 5;
 
@@ -19,6 +20,7 @@ ParticleGraphics::ParticleGraphics(Particle const& particle) : m_Particle(partic
 }
 
 void ParticleGraphics::update(sf::Time const& delta) {
+  UNUSED(delta);
   updatePosition();
   updateText();
   updateVelocityLine();

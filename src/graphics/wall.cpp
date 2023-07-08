@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "../math/angles.hpp"
+#include "../util/unused.hpp"
 
 static const double LINE_THICKNESS = 5;
 static const double POINT_RADIUS = 4;
@@ -26,6 +27,7 @@ WallGraphics::WallGraphics(Wall const& wall) : m_Wall{wall} {
 }
 
 void WallGraphics::update(sf::Time const& delta) {
+  UNUSED(delta);
   m_Line.setSize(sf::Vector2f(m_Wall.length() * getCoordsScaling(), LINE_THICKNESS));
   updatePositions();
   updateText();
