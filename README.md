@@ -67,7 +67,7 @@ Una volta terminato il programma verranno forniti in output:
 - La media del numero di collisioni per ogni iterazione.
 
 
-Informazioni ulteriori su input e output nella sezione [Argomenti CLI](#argomenti-cli).
+Ulteriori informazioni su input e output nella sezione [Argomenti CLI](#argomenti-cli).
 
 [Torna all'indice](#biliardo-triangolare)
 
