@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
                           config.stddevInitialY, radians(config.meanInitialTheta),
                           radians(config.stddevInitialTheta));
     simulation.setVerboseOutput(config.verboseOutput);
+    simulation.setSpeedMultiplier(config.simulationSpeed);
 
     if (config.graphics) {
       GraphicsWindow window(simulation);

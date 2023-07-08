@@ -14,6 +14,7 @@ class Simulation {
   Wall m_WallHigh, m_WallLow;
   Particle m_Particle;
   Segment m_StartLine, m_FinishLine;
+  float m_SpeedMultiplier;
   std::default_random_engine m_RandomEngine;
   std::normal_distribution<float> m_ParticleYDistribution;
   std::normal_distribution<float> m_ThetaDistribution;
@@ -41,6 +42,8 @@ class Simulation {
   Statistics const& getStats() const;
   void setVerboseOutput(bool verbose);
   bool isVerboseOutput() const;
+  void setSpeedMultiplier(float multiplier);
+  float getSpeedMultiplier() const;
   unsigned addNewIterationListener(Listeners<Particle const&>::Listener listener);
   void removeNewIterationListener(unsigned listenerID);
   unsigned addCollisionListener(Listeners<Particle const&>::Listener listener);

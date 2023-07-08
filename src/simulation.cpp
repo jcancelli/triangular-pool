@@ -14,6 +14,7 @@ Simulation::Simulation(float r1, float r2, float l, float meanY, float devY, flo
       m_Particle(),
       m_StartLine(m_WallHigh.getA(), m_WallLow.getA()),
       m_FinishLine(m_WallHigh.getB(), m_WallLow.getB()),
+      m_SpeedMultiplier{1.0},
       m_ParticleYDistribution(meanY, devY),
       m_ThetaDistribution(meanTheta, devTheta) {
   if (meanY > r1 || meanY < -r1) {
@@ -71,7 +72,7 @@ void Simulation::newIteration() {
 }
 
 void Simulation::update(double deltaMs) {
-  double distanceToTravel = m_Particle.getSpeed() * deltaMs / 1000.0;
+  double distanceToTravel = m_Particle.getSpeed() * deltaMs / 1000.0 * m_SpeedMultiplier;
 
   while (distanceToTravel > 0.0) {
     auto nextCollisionOpt = nextCollision();
@@ -191,6 +192,17 @@ void Simulation::setVerboseOutput(bool verbose) {
 
 bool Simulation::isVerboseOutput() const {
   return m_Stats.isVerboseOutput();
+}
+
+void Simulation::setSpeedMultiplier(float multiplier) {
+  if (multiplier <= 0) {
+    throw std::invalid_argument("Error: Speed multiplier must be positive");
+  }
+  m_SpeedMultiplier = multiplier;
+}
+
+float Simulation::getSpeedMultiplier() const {
+  return m_SpeedMultiplier;
 }
 
 unsigned Simulation::addNewIterationListener(Listeners<Particle const&>::Listener listener) {
