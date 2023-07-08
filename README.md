@@ -34,6 +34,7 @@ Di questa particella verranno tracciati:
 - $\theta_i$ - Angolo che definisce la direzione iniziale della particella.
 - $y_f$ - Posizione sull'asse delle $y$ finale della particella.
 - $\theta_f$ - Angolo che definisce la direzione finale della particella.
+- $c$ - Numero di collisioni per ogni iterazione.
 
 
 ### Input
@@ -62,6 +63,7 @@ Una volta terminato il programma verranno forniti in output:
 - La deviazione standard della distribuzione di $\theta_f$.
 - La coefficiente di simmetria della distribuzione di $\theta_f$.
 - La coefficiente di appiattimento della distribuzione di $\theta_f$.
+- La media del numero di collisioni per ogni iterazione.
 
 
 
@@ -97,9 +99,3 @@ E' possibile modificare il comportamento di Trangular Pool attraverso
 l'uso di alcuni parametri e flags che possono essere passati all'eseguibile.
 In ogni momento è possibile accedere ad una lista di questi parametri eseguendo
 triangular pool con l'opzione `--help` p `-h`.
-
-**Attenzione**: Per motivi di tempo non è stato possibile portare a termine 
-la modalità grafica dell'applicazione, di conseguenza la flag `--graphics`
-potrebbe risultare in crash inaspettati del programma. Si consiglia
-l'esecuzione in modalità CLI-only (già di default se non si fà uso di
-quest'ultima flag).
