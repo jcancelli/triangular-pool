@@ -70,10 +70,10 @@ void StatisticsGraphics::updateText() {
   Statistics const& stats = m_Simulation.getStats();
   out << stats.getIterationsCount() << "\n";
   out << stats.getMeanFinalY() << "\n";
-  out << degrees(stats.getMeanFinalTheta()) << "deg\n";
+  out << math::degrees(stats.getMeanFinalTheta()) << "deg\n";
   out << stats.getMeanCollisions() << "\n";
   out << stats.getStdDevFinalY() << "\n";
-  out << degrees(stats.getStdDevFinalTheta()) << "deg\n";
+  out << math::degrees(stats.getStdDevFinalTheta()) << "deg\n";
   out << stats.getSymmetryFinalY() << "\n";
   out << stats.getSymmetryFinalTheta() << "\n";
   out << stats.getFlatteningFinalY() << "\n";

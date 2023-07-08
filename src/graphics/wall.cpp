@@ -18,7 +18,7 @@ WallGraphics::WallGraphics(Wall const& wall) : m_Wall{wall} {
   const double wallAngle = std::atan2(-wallDirection.y, wallDirection.x);  // invert y
 
   m_Line.setOrigin(0, LINE_THICKNESS / 2);
-  m_Line.setRotation(degrees(wallAngle));
+  m_Line.setRotation(math::degrees(wallAngle));
   m_Line.setFillColor(sf::Color::Blue);
 
   m_PointA.setRadius(POINT_RADIUS);

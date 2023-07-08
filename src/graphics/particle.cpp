@@ -46,14 +46,14 @@ void ParticleGraphics::updateText() {
   out.precision(2);
   auto pos = m_Particle.getPosition();
   out << std::fixed << "x: " << pos.x << ", y: " << pos.y
-      << ", theta: " << degrees(m_Particle.getTheta()) << "deg";
+      << ", theta: " << math::degrees(m_Particle.getTheta()) << "deg";
   m_Point.setText(std::move(out).str());
 }
 
 void ParticleGraphics::updateVelocityLine() {
   auto theta = m_Particle.getTheta();
   auto pos = m_Particle.getPosition();
-  m_VelocityLine.setRotation(degrees(-theta));
+  m_VelocityLine.setRotation(math::degrees(-theta));
   m_VelocityLine.setPosition(pos.x * getCoordsScaling(), -pos.y * getCoordsScaling());
 }
 
