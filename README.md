@@ -12,7 +12,7 @@ GitHub: *https://github.com/jcancelli/triangular-pool*
 	- [Dipendenze](#dipendenze)
 	- [Comandi](#comandi)
 - [Esecuzione](#esecuzione)
-	- [CLI Arguments](#cli-arguments)
+	- [Argomenti CLI](#argomenti-cli)
 
 ## Introduzione
 
@@ -68,7 +68,7 @@ Una volta terminato il programma verranno forniti in output:
 
 
 
-Informazioni ulteriori su input e output nella sezione [CLI Arguments](#cli-arguments).
+Informazioni ulteriori su input e output nella sezione [Argomenti CLI](#argomenti-cli).
 
 
 ## Compilazione
@@ -93,7 +93,7 @@ Informazioni ulteriori su input e output nella sezione [CLI Arguments](#cli-argu
 
 Il programma viene compilato nell'eseguibile `./build/src/triangular_pool`
 
-### CLI arguments
+### Argomenti CLI
 
 E' possibile modificare il comportamento di Trangular Pool attraverso
 l'uso di alcuni parametri e flags che possono essere passati all'eseguibile.
