@@ -3,6 +3,8 @@
 
 #include <doctest/doctest.h>
 
+using namespace pool::math;
+
 TEST_CASE("Testing mean") {
   std::vector<double> values;
 

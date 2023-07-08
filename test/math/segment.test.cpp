@@ -5,6 +5,8 @@
 
 #include <cmath>
 
+using namespace pool::math;
+
 TEST_CASE("Testing Segment") {
   SUBCASE("Testing constructors") {
     SUBCASE("x1 y1 x2 y2") {
