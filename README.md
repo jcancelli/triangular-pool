@@ -99,7 +99,7 @@ Ecco una lista di warnings dovuti a librerie esterne.
 | `unused-parameter` | `src/libraries/argumentum/include/../include/argumentum/../../src/argumentstream_impl.h:11:93` |
 | `unused-parameter` | `src/libraries/argumentum/include/../include/argumentum/../../src/parserconfig_impl.h:94:26` |
 
-Esclusi i warning appena elencati, la compilazione dovrebbe risultare
+Esclusi i quelli appena elencati, la compilazione dovrebbe risultare
 priva di warnings.
 
 [Torna all'indice](#biliardo-triangolare)
