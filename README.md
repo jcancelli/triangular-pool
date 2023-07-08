@@ -10,7 +10,7 @@ GitHub: *https://github.com/jcancelli/triangular-pool*
 	- [Output](#output)
 	- [Note](#note)
 - [Compilazione](#compilazione)
-	- [Dipendenze](#dipendenze)
+	- [Requisiti](#requisiti)
 	- [Comandi](#comandi)
 	- [Warnings aspettati](#warnings-aspettati)
 - [Esecuzione](#esecuzione)
@@ -88,7 +88,7 @@ ne tracci le statistiche in modo separato.
 
 ## Compilazione
 
-### Dipendenze
+### Requisiti
 - CMake
 - SFML
 
