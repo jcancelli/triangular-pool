@@ -1,5 +1,8 @@
 #include "graphics.hpp"
 
+Graphics::Graphics() : m_CoordsScaling{1.0} {
+}
+
 void Graphics::update(sf::Time const& delta) {
 }
 
