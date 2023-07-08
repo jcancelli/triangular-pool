@@ -43,6 +43,12 @@ ParseStatus parseArguments(int argc, char* argv[], Config& config) {
       .default_value(config.stddevInitialTheta)
       .nargs(1)
       .help("Standard deviation of the initial particle direction angle value.");
+  params.add_parameter(config.simulationSpeed, "--speed")
+      .default_value(config.simulationSpeed)
+      .nargs(1)
+      .help(
+          "Speed of the simulation. If the flag --graphics is not present this value will be "
+          "ignored.");
   params.add_parameter(config.verboseOutput, "--verbose")
       .default_value(config.verboseOutput)
       .flagValue("1")
