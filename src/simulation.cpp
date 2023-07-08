@@ -94,7 +94,7 @@ void Simulation::update(double deltaMs) {
       auto particleRay = m_Particle.getRay();
       auto finalPositionOpt = intersection(particleRay, m_FinishLine);
       if (!finalPositionOpt.has_value()) {
-        auto finalPositionOpt = intersection(particleRay, m_StartLine);
+        finalPositionOpt = intersection(particleRay, m_StartLine);
         assert(finalPositionOpt.has_value());
       }
       auto finalPosition = finalPositionOpt.value();
