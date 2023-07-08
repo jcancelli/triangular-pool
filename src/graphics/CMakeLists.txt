@@ -10,6 +10,7 @@ add_library(graphics
 	particle.cpp
 	point.cpp
 	simulation.cpp
+	statistics.cpp
 	wall.cpp
 	window.cpp
 )
