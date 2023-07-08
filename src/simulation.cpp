@@ -2,7 +2,6 @@
 
 #include <cassert>
 #include <glm/geometric.hpp>
-#include <iostream>
 #include <random>
 #include <stdexcept>
 
@@ -78,7 +77,8 @@ void Simulation::update(double deltaMs) {
     auto nextCollisionOpt = nextCollision();
     if (nextCollisionOpt.has_value()) {  // Particle is pointing toward a wall
       auto nextCollisionV = nextCollisionOpt.value();
-      auto distanceToNextCollision = (nextCollisionV.position - m_Particle.getPosition()).length();
+      auto distanceToNextCollision =
+          glm::length(nextCollisionV.position - m_Particle.getPosition());
       if (distanceToTravel >= distanceToNextCollision) {  // Particle will hit the wall
         m_Particle.setPosition(nextCollisionV.position);
         m_Particle.reflect(nextCollisionV.wallNormal);
