@@ -123,7 +123,8 @@ triangular pool con l'opzione `--help` o `-h`.
 $ ./build/src/triangular_pool --help
 usage: ./build/src/triangular_pool [--r1 R1] [--r2 R2] [--l L] [--n N] [--mean-y
 MEAN-Y] [--std-dev-y STD-DEV-Y] [--mean-theta MEAN-THETA] [--std-dev-theta
-STD-DEV-THETA] [--speed SPEED] [--verbose] [--graphics] [--help]
+STD-DEV-THETA] [--speed SPEED] [--verbose] [--csv-headers] [--output-csv]
+[--graphics] [--help]
 
 Simulation of a triangular pool
 
@@ -147,6 +148,10 @@ optional arguments:
                               not present this value will be ignored.
   --verbose                   Value of y of the leftmost extreme of the upper
                               wall (-r1 for the lower wall).
+  --csv-headers               Will add headers to CSV output.
+  --output-csv                Will output simulation info in CSV format (if no
+                              --csv-headers flag is added, only data will be
+                              outputed).
   --graphics                  Enables graphical visualization of the simulation.
                               In graphical mode the simulation keeps iterating
                               until the program is stopped (the parameter n is
