@@ -79,7 +79,7 @@ Informazioni ulteriori su input e output nella sezione [CLI Arguments](#cli-argu
 
 ### Comandi
 
-Assicurasi di trovarsi nella root del progetto.
+*Assicurasi di trovarsi nella root del progetto.*
 
 | Azione |  Comando |
 | -------|----------|
@@ -89,13 +89,13 @@ Assicurasi di trovarsi nella root del progetto.
 
 ## Esecuzione
 
-Assicurasi di trovarsi nella root del progetto.
+*Assicurasi di trovarsi nella root del progetto.*
 
-Per eseguire il programma, eseguire l'eseguibile `./build/src/triangular_pool`
+Il programma viene compilato nell'eseguibile `./build/src/triangular_pool`
 
 ### CLI arguments
 
 E' possibile modificare il comportamento di Trangular Pool attraverso
 l'uso di alcuni parametri e flags che possono essere passati all'eseguibile.
 In ogni momento è possibile accedere ad una lista di questi parametri eseguendo
-triangular pool con l'opzione `--help` p `-h`.
+triangular pool con l'opzione `--help` o `-h`.
