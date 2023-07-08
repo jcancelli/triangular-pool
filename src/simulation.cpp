@@ -98,7 +98,7 @@ void Simulation::update(double deltaMs) {
         assert(finalPositionOpt.has_value());
       }
       auto finalPosition = finalPositionOpt.value();
-      auto distanceToFinalPosition = (finalPosition - m_Particle.getPosition()).length();
+      auto distanceToFinalPosition = glm::length(finalPosition - m_Particle.getPosition());
       if (distanceToTravel >= distanceToFinalPosition) {  // Particle will reach final position
         m_Particle.setPosition(finalPosition);
         m_IterationEndedListeners.notify(m_Particle);
