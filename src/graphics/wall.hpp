@@ -13,20 +13,18 @@ class WallGraphics : public Graphics {
   Wall const& m_Wall;
   sf::RectangleShape m_Line;
   PointGraphics m_PointA, m_PointB;
-  double m_CoordinatesScaling;
 
  public:
   WallGraphics(Wall const& wall);
 
-  void update(double deltaTimeMs);
-  void setCoordinatesScaling(double factor);
-  double getCoordinatesScaling() const;
+  void update(sf::Time const& delta) override;
 
  protected:
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
  private:
-  void updatePointsText();
+  void updatePositions();
+  void updateText();
 };
 
 #endif
