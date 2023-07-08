@@ -38,7 +38,7 @@ class Simulation {
   Particle const& getParticle() const;
   Wall const& getWallHigh() const;
   Wall const& getWallLow() const;
-  Statistics getStats() const;
+  Statistics const& getStats() const;
   void setVerboseOutput(bool verbose);
   bool isVerboseOutput() const;
   unsigned addNewIterationListener(Listeners<Particle const&>::Listener listener);

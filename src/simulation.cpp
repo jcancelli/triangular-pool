@@ -181,7 +181,7 @@ Wall const& Simulation::getWallLow() const {
   return m_WallLow;
 }
 
-Statistics Simulation::getStats() const {
+Statistics const& Simulation::getStats() const {
   return m_Stats;
 }
 
