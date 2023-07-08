@@ -28,8 +28,10 @@ un sistema delimitato da una barriera superiore e da una inferiore (vedi figura)
 
 ![biliardo triangolare](resources/readme/biliardo.svg)
 
-In questa simulazione la particella partirà dalla posizione $(0, y_i)$ con
-una direzione definita dall'angolo $\theta_i$ e, a seguito di $n$ collisioni elastiche con
+In questa simulazione la particella partirà dalla posizione random $(0, y_i)$ (distribuzione
+Gaussiana definita da $\mu{_y{_i}}$ e $\sigma{_y{_i}}$) con una direzione random identificata 
+dall'angolo $\theta_i$ (distribuzione Gaussiana definita da $\mu{_\theta{_i}}$ e
+$\sigma{_\theta{_i}}$) e, a seguito di $n$ collisioni elastiche con
 le barriere, raggiungerà la posizione $(l, y_f)$ (o in determinate condizioni $(0, y_f)$ )
 con direzione $\theta_f$.
 
