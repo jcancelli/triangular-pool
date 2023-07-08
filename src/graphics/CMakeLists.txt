@@ -6,6 +6,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src/libraries)
 
 add_library(graphics
 	font.cpp
+	graphics.cpp
 	particle.cpp
 	point.cpp
 	simulation.cpp
