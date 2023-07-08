@@ -35,11 +35,17 @@ void validateConfig(Config const& config) {
   if (config.stddevInitialTheta < 0) {
     throw std::invalid_argument("Error: std-dev-theta can't be negative.");
   }
+  if (config.simulationSpeed <= 0) {
+    throw std::invalid_argument("Error: speed must be a positive number.");
+  }
   if (config.graphics && config.iterations > 1) {
     std::cout << "Warning: since graphic mode is on, the parameter --n (number of iterations) will "
-                 "be ignored\n";
+                 "be ignored.\n";
   }
   if (config.graphics && config.verboseOutput) {
-    std::cout << "Warning: since graphic mode is on, the parameter --verbose will be ignored\n";
+    std::cout << "Warning: since graphic mode is on, the parameter --verbose will be ignored.\n";
+  }
+  if (!config.graphics && config.simulationSpeed != 1.0) {
+    std::cout << "Warning: since graphic mode is off, the parameter --speed will be ignored.\n";
   }
 }

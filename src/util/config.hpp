@@ -12,6 +12,7 @@ struct Config {
   double stddevInitialY = 1.0;
   double meanInitialTheta = 0.0;
   double stddevInitialTheta = 10.0;
+  double simulationSpeed = 1.0;
 };
 
 void validateConfig(Config const& config);
