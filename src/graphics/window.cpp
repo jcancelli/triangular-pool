@@ -8,10 +8,13 @@ GraphicsWindow::GraphicsWindow(Simulation& simulation)
                sf::Style::Close | sf::Style::Titlebar, sf::ContextSettings(0, 0, 8)),
       m_SimulationGraphics(simulation),
       m_Simulation(simulation) {
-  m_SimulationGraphics.setPosition(WINDOW_PADDING, WINDOW_SIZE / 2);
   double maxCoordinate =
       std::max(simulation.getL(), std::max(simulation.getR1(), simulation.getR2()));
+  m_SimulationGraphics.setPosition(WINDOW_PADDING, WINDOW_SIZE / 2);
   m_SimulationGraphics.setCoordinatesScaling((WINDOW_SIZE - WINDOW_PADDING * 2) / maxCoordinate);
+  m_Simulation.addIterationEndedListener([this](auto particle) {  //
+    this->m_Simulation.newIteration();                            //
+  });                                                             //
 }
 
 void GraphicsWindow::show() {
