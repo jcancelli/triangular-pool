@@ -59,9 +59,11 @@ int main(int argc, char* argv[]) {
 static void printOutput(pool::Simulation const& simulation, pool::util::Config const& config) {
   if (config.outputAsCSV) {
     if (config.outputCSVHeaders) {
-      std::cout << "r1;r2;l;n;mean-y;mean-theta;mean-collisions;std-dev-y;std-dev-theta;skew-y;"
-                   "skew-theta;flat-y;flat-theta;mean-initial-y;std-dev-initial-y;mean-initial-"
-                   "theta;std-dev-initial-theta\n";
+      std::cout << "R1;R2;L;Number of iterations;Mean final y;Mean final theta;Average number of "
+                   "collisions per iteration;Standard deviation final y;Standard deviation final "
+                   "theta;Skewness final y;Skewness final theta;Kurtosis final y;Kurtosis final "
+                   "theta;Mean initial y;Standard deviation initial y;Mean initial theta;Standard "
+                   "deviation initial theta\n";
     }
     std::cout << simulation.getR1() << ";" << simulation.getR2() << ";" << simulation.getL() << ";"
               << simulation.getStats().asCSV() << ";" << simulation.getMeanInitialParticleY() << ";"
