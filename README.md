@@ -11,6 +11,7 @@ GitHub: *https://github.com/jcancelli/triangular-pool*
 - [Compilazione](#compilazione)
 	- [Dipendenze](#dipendenze)
 	- [Comandi](#comandi)
+	- [Warnings aspettati](#warnings-aspettati)
 - [Esecuzione](#esecuzione)
 	- [Argomenti CLI](#argomenti-cli)
 	- [Modalità d'esecuzione](#modalità-desecuzione)
@@ -83,9 +84,23 @@ Ulteriori informazioni su input e output nella sezione [Argomenti CLI](#argoment
 *Assicurasi di trovarsi nella root del progetto.*
 
 | Azione |  Comando |
-| -------|----------|
+|--------|----------|
 | Setup build system | `cmake -S . -B build` |
 | Build progetto | `cmake --build build` |
+
+
+### Warnings aspettati
+
+Ecco una lista di warnings dovuti a librerie esterne.
+
+| Warning | File |
+|---------|------|
+|`unused-parameter`| `src/libraries/argumentum/include/../include/argumentum/../../src/optionpack.h:19:50` |
+| `unused-parameter` | `src/libraries/argumentum/include/../include/argumentum/../../src/argumentstream_impl.h:11:93` |
+| `unused-parameter` | `src/libraries/argumentum/include/../include/argumentum/../../src/parserconfig_impl.h:94:26` |
+
+Esclusi i warning appena elencati, la compilazione dovrebbe risultare
+priva di warnings.
 
 [Torna all'indice](#biliardo-triangolare)
 
