@@ -9,6 +9,10 @@
 
 #include "statistics.hpp"
 
+namespace pool {
+
+namespace math {
+
 template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
 double mean(std::vector<T> const& values) {
   if (values.size() < 1) {
@@ -96,5 +100,9 @@ double kurtosis(std::vector<T> const& values, std::optional<double> meanOpt,
   double denom = (n - 1.0) * std::pow(stdDevOpt.value(), 4);
   return num / denom;
 }
+
+}  // namespace math
+
+}  // namespace pool
 
 #endif

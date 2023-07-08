@@ -7,6 +7,10 @@
 #include "graphics.hpp"
 #include "point.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 class ParticleGraphics : public Graphics {
  private:
   Particle const& m_Particle;
@@ -26,5 +30,9 @@ class ParticleGraphics : public Graphics {
   void updateText();
   void updateVelocityLine();
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

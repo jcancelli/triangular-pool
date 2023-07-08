@@ -5,6 +5,10 @@
 #define WINDOW_SIZE 700
 #define WINDOW_PADDING 200
 
+namespace pool {
+
+namespace graphics {
+
 GraphicsWindow::GraphicsWindow(Simulation& simulation)
     : m_Window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Triangular Pool",
                sf::Style::Close | sf::Style::Titlebar, sf::ContextSettings(0, 0, 8)),
@@ -63,3 +67,7 @@ void GraphicsWindow::processWindowEvents() {
     }
   }
 }
+
+}  // namespace graphics
+
+}  // namespace pool

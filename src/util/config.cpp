@@ -4,6 +4,10 @@
 #include <stdexcept>
 #include <string>
 
+namespace pool {
+
+namespace util {
+
 void validateConfig(Config const& config) {
   if (config.r1 < 0) {
     throw std::invalid_argument("Error: R1 can't be negative.");
@@ -49,3 +53,7 @@ void validateConfig(Config const& config) {
     std::cout << "Warning: since graphic mode is off, the parameter --speed will be ignored.\n";
   }
 }
+
+}  // namespace util
+
+}  // namespace pool

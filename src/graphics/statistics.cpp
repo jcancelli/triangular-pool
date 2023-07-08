@@ -6,6 +6,10 @@
 #include "../util/unused.hpp"
 #include "font.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 StatisticsGraphics::StatisticsGraphics(Simulation& simulation) : m_Simulation(simulation) {
   simulation.addIterationEndedListener([this](auto particle) {
     UNUSED(particle);
@@ -76,3 +80,7 @@ void StatisticsGraphics::updateText() {
   out << stats.getFlatteningFinalTheta() << "\n";
   m_Values.setString(out.str());
 }
+
+}  // namespace graphics
+
+}  // namespace pool

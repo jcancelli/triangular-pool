@@ -5,6 +5,10 @@
 
 #include "linear_equation.hpp"
 
+namespace pool {
+
+namespace math {
+
 class Ray {
  private:
   glm::vec2 m_Origin;
@@ -26,5 +30,9 @@ class Ray {
  private:
   void updateEquation();
 };
+
+}  // namespace math
+
+}  // namespace pool
 
 #endif

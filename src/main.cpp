@@ -7,30 +7,32 @@
 #include "simulation.hpp"
 #include "util/arguments.hpp"
 
+namespace pool {
+
 int main(int argc, char* argv[]) {
   try {
-    Config config;
+    util::Config config;
 
     switch (parseArguments(argc, argv, config)) {
-      case ParseStatus::HelpShown:
+      case util::ParseStatus::HelpShown:
         return EXIT_SUCCESS;
-      case ParseStatus::Error:
+      case util::ParseStatus::Error:
         return EXIT_FAILURE;
       default:
         // do nothing, keep going
         break;
     }
 
-    loadFonts();  // throws runtime_error if unable to find a font file
+    graphics::loadFonts();  // throws runtime_error if unable to find a font file
 
     Simulation simulation(config.r1, config.r2, config.l, config.meanInitialY,
-                          config.stddevInitialY, radians(config.meanInitialTheta),
-                          radians(config.stddevInitialTheta));
+                          config.stddevInitialY, math::radians(config.meanInitialTheta),
+                          math::radians(config.stddevInitialTheta));
     simulation.setVerboseOutput(config.verboseOutput);
     simulation.setSpeedMultiplier(config.simulationSpeed);
 
     if (config.graphics) {
-      GraphicsWindow window(simulation);
+      graphics::GraphicsWindow window(simulation);
       window.show();
     } else {
       for (int i = 0; i < config.iterations; i++) {
@@ -51,3 +53,5 @@ int main(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 }
+
+}  // namespace pool

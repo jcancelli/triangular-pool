@@ -6,6 +6,10 @@
 #include "../simulation.hpp"
 #include "graphics.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 class StatisticsGraphics : public Graphics {
  private:
   Simulation const& m_Simulation;
@@ -22,5 +26,9 @@ class StatisticsGraphics : public Graphics {
  private:
   void updateText();
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

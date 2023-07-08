@@ -6,6 +6,10 @@
 
 #include "linear_equation.hpp"
 
+namespace pool {
+
+namespace math {
+
 class Segment {
  private:
   glm::vec2 m_A, m_B;
@@ -31,5 +35,9 @@ class Segment {
   void updateNormals();
   void updateEquation();
 };
+
+}  // namespace math
+
+}  // namespace pool
 
 #endif

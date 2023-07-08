@@ -1,5 +1,9 @@
 #include "simulation.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 SimulationGraphics::SimulationGraphics(Simulation& simulation)
     : m_Simulation{simulation},
       m_UpperWallGraphics(simulation.getWallHigh()),
@@ -55,3 +59,7 @@ void SimulationGraphics::draw(sf::RenderTarget& target, sf::RenderStates states)
   }
   target.draw(m_ParticleGraphics, states);
 }
+
+}  // namespace graphics
+
+}  // namespace pool

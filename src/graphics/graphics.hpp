@@ -6,6 +6,10 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/System/Clock.hpp>
 
+namespace pool {
+
+namespace graphics {
+
 class Graphics : public sf::Drawable, public sf::Transformable {
  private:
   double m_CoordsScaling;
@@ -17,5 +21,9 @@ class Graphics : public sf::Drawable, public sf::Transformable {
   void setCoordsScaling(double factor);
   double getCoordsScaling() const;
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

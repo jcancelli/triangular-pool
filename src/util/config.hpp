@@ -1,6 +1,10 @@
 #ifndef CONFIG_HPP
 #define CONFIG_HPP
 
+namespace pool {
+
+namespace util {
+
 struct Config {
   bool graphics = false;
   bool verboseOutput = false;
@@ -16,5 +20,9 @@ struct Config {
 };
 
 void validateConfig(Config const& config);
+
+}  // namespace util
+
+}  // namespace pool
 
 #endif

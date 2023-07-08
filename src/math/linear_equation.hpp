@@ -3,6 +3,10 @@
 
 #include <ostream>
 
+namespace pool {
+
+namespace math {
+
 struct LinearEquation {
   double gradient;
   double offset = 0.0;
@@ -11,5 +15,9 @@ struct LinearEquation {
 };
 
 std::ostream& operator<<(std::ostream& os, LinearEquation const& equation);
+
+}  // namespace math
+
+}  // namespace pool
 
 #endif

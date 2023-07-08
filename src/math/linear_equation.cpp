@@ -2,6 +2,10 @@
 
 #include <limits>
 
+namespace pool {
+
+namespace math {
+
 double LinearEquation::operator()(double x) const {
   return gradient * x + offset;
 }
@@ -13,3 +17,7 @@ bool LinearEquation::isValid() const {
 std::ostream& operator<<(std::ostream& os, LinearEquation const& equation) {
   return os << "y = " << equation.gradient << " * x + " << equation.offset;
 }
+
+}  // namespace math
+
+}  // namespace pool

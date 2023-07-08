@@ -7,6 +7,8 @@
 
 #include "math/intersection.hpp"
 
+namespace pool {
+
 Simulation::Simulation(float r1, float r2, float l, float meanY, float devY, float meanTheta,
                        float devTheta)
     : m_WallHigh(r1, r2, l),
@@ -205,7 +207,7 @@ float Simulation::getSpeedMultiplier() const {
   return m_SpeedMultiplier;
 }
 
-unsigned Simulation::addNewIterationListener(Listeners<Particle const&>::Listener listener) {
+unsigned Simulation::addNewIterationListener(util::Listeners<Particle const&>::Listener listener) {
   return m_NewIterationListeners.add(listener);
 }
 
@@ -213,7 +215,7 @@ void Simulation::removeNewIterationListener(unsigned listenerID) {
   m_NewIterationListeners.remove(listenerID);
 }
 
-unsigned Simulation::addCollisionListener(Listeners<Particle const&>::Listener listener) {
+unsigned Simulation::addCollisionListener(util::Listeners<Particle const&>::Listener listener) {
   return m_CollisionListeners.add(listener);
 }
 
@@ -221,7 +223,8 @@ void Simulation::removeCollisionListener(unsigned listenerID) {
   m_CollisionListeners.remove(listenerID);
 }
 
-unsigned Simulation::addIterationEndedListener(Listeners<Particle const&>::Listener listener) {
+unsigned Simulation::addIterationEndedListener(
+    util::Listeners<Particle const&>::Listener listener) {
   return m_IterationEndedListeners.add(listener);
 }
 
@@ -232,7 +235,7 @@ void Simulation::removeIterationEndedListener(unsigned listenerID) {
 std::optional<Simulation::Collision> Simulation::nextCollision() const {
   auto particleRay = m_Particle.getRay();
   auto& collidedWall = m_Particle.getTheta() > 0 ? m_WallHigh : m_WallLow;
-  auto collisionPointOpt = intersection(particleRay, collidedWall);
+  auto collisionPointOpt = math::intersection(particleRay, collidedWall);
   if (!collisionPointOpt.has_value()) {
     return {};
   }
@@ -249,3 +252,5 @@ glm::vec2 Simulation::wallNormalFromCollisionPoint(glm::vec2 const& collisionPoi
   auto wallNormals = m_WallLow.getNormals();
   return wallNormals.first.y > 0 ? wallNormals.first : wallNormals.second;
 }
+
+}  // namespace pool

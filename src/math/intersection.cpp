@@ -2,6 +2,10 @@
 
 #include "segment.hpp"
 
+namespace pool {
+
+namespace math {
+
 std::optional<glm::vec2> intersection(LinearEquation const& a, LinearEquation const& b) {
   if (a.gradient == b.gradient || !a.isValid() || !b.isValid()) {
     return {};
@@ -123,3 +127,7 @@ std::optional<glm::vec2> intersection(Segment const& a, Segment const& b) {
   }
   return intersection;
 }
+
+}  // namespace math
+
+}  // namespace pool

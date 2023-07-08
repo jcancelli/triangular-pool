@@ -6,6 +6,10 @@
 #include "../math/angles.hpp"
 #include "../util/unused.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 static const double LINE_THICKNESS = 5;
 static const double POINT_RADIUS = 4;
 
@@ -57,3 +61,7 @@ void WallGraphics::updateText() {
   out << std::fixed << "x: " << b.x << ", y: " << b.y;
   m_PointB.setText(std::move(out).str());
 }
+
+}  // namespace graphics
+
+}  // namespace pool

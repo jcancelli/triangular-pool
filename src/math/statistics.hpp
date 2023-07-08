@@ -5,6 +5,10 @@
 #include <type_traits>
 #include <vector>
 
+namespace pool {
+
+namespace math {
+
 template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
 double mean(std::vector<T> const& values);
 
@@ -26,6 +30,10 @@ double skewness(std::vector<T> const& values, std::optional<double> meanOpt = {}
 template <class T, class = std::enable_if_t<std::is_arithmetic_v<T>>>
 double kurtosis(std::vector<T> const& values, std::optional<double> meanOpt = {},
                 std::optional<double> stdDevOpt = {});
+
+}  // namespace math
+
+}  // namespace pool
 
 #include "statistics.inl"
 

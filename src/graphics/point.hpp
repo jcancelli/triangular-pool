@@ -6,6 +6,10 @@
 
 #include "graphics.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 class PointGraphics : public Graphics {
  public:
   enum class TextSide { Top, TopRight, Right, BottomRight, Bottom, BottomLeft, Left, TopLeft };
@@ -36,5 +40,9 @@ class PointGraphics : public Graphics {
  private:
   void updateText();
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

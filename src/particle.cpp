@@ -6,6 +6,8 @@
 
 #include "math/angles.hpp"
 
+namespace pool {
+
 Particle::Particle() : m_Position(0, 0), m_Velocity(0, 0) {
 }
 
@@ -53,8 +55,8 @@ float Particle::getTheta() const {
   return std::atan2(m_Velocity.y, m_Velocity.x);
 }
 
-Ray Particle::getRay() const {
-  return Ray(m_Position, m_Velocity);
+math::Ray Particle::getRay() const {
+  return math::Ray(m_Position, m_Velocity);
 }
 
 void Particle::reflect(glm::vec2 const& surfaceNormal) {
@@ -63,5 +65,7 @@ void Particle::reflect(glm::vec2 const& surfaceNormal) {
 
 std::ostream& operator<<(std::ostream& os, Particle const& particle) {
   return os << "Position: " << particle.m_Position << ", Velocity: " << particle.m_Velocity
-            << ", Theta: " << degrees(particle.getTheta());
+            << ", Theta: " << math::degrees(particle.getTheta());
 }
+
+}  // namespace pool

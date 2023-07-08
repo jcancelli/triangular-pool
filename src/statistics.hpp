@@ -5,6 +5,8 @@
 #include <ostream>
 #include <vector>
 
+namespace pool {
+
 class Statistics {
  public:
   struct Entry {
@@ -59,5 +61,7 @@ class Statistics {
 };
 
 std::ostream& operator<<(std::ostream& os, Statistics const& stats);
+
+}  // namespace pool
 
 #endif

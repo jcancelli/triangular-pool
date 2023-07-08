@@ -2,6 +2,10 @@
 
 #include <argumentum/argparse-h.h>
 
+namespace pool {
+
+namespace util {
+
 ParseStatus parseArguments(int argc, char* argv[], Config& config) {
   ParseStatus status = ParseStatus::Success;
   auto parser = argumentum::argument_parser{};
@@ -93,3 +97,7 @@ ParseStatus parseArguments(int argc, char* argv[], Config& config) {
 
   return status;
 }
+
+}  // namespace util
+
+}  // namespace pool

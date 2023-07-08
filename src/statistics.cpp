@@ -7,6 +7,8 @@
 #include "math/angles.hpp"
 #include "math/statistics.hpp"
 
+namespace pool {
+
 Statistics::Statistics()
     : m_MeanFinalY{0.0},
       m_MeanFinalTheta{0.0},
@@ -124,14 +126,14 @@ void Statistics::updateStats() {
   auto mapToFinalTheta = [](auto entry) { return entry.finalTheta; };
   std::transform(m_Entries.cbegin(), m_Entries.cend(), thetaValues.begin(), mapToFinalTheta);
 
-  m_StdDevFinalY = stdDev(yValues, m_MeanFinalY);
-  m_StdDevFinalTheta = stdDev(thetaValues, m_MeanFinalTheta);
+  m_StdDevFinalY = math::stdDev(yValues, m_MeanFinalY);
+  m_StdDevFinalTheta = math::stdDev(thetaValues, m_MeanFinalTheta);
 
-  m_SymmetryFinalY = skewness(yValues, m_MeanFinalY, m_StdDevFinalY);
-  m_SymmetryFinalTheta = skewness(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
+  m_SymmetryFinalY = math::skewness(yValues, m_MeanFinalY, m_StdDevFinalY);
+  m_SymmetryFinalTheta = math::skewness(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
 
-  m_FlatteningFinalY = kurtosis(yValues, m_MeanFinalY, m_StdDevFinalY);
-  m_FlatteningFinalTheta = kurtosis(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
+  m_FlatteningFinalY = math::kurtosis(yValues, m_MeanFinalY, m_StdDevFinalY);
+  m_FlatteningFinalTheta = math::kurtosis(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
 }
 
 std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
@@ -140,13 +142,13 @@ std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   os << "N:\t\t\t" << stats.getIterationsCount() << "\t\t\tNumber of iterations\n";
 
   os << "mean Y:\t\t\t" << stats.getMeanFinalY() << "\t\tMean final Y\n";
-  os << "mean theta:\t\t" << degrees(stats.getMeanFinalTheta())
+  os << "mean theta:\t\t" << math::degrees(stats.getMeanFinalTheta())
      << "°\t\tMean final particle direction angle\n";
   os << "mean collisions:\t" << stats.getMeanCollisions()
      << "\t\tMean number of collisions per iteration\n";
 
   os << "stddev y:\t\t" << stats.getStdDevFinalY() << "\t\tStandard deviation final Y\n";
-  os << "stddev theta:\t\t" << degrees(stats.getStdDevFinalTheta())
+  os << "stddev theta:\t\t" << math::degrees(stats.getStdDevFinalTheta())
      << "°\t\tStandard deviation final particle direction angle\n";
 
   os << "sym Y:\t\t\t" << stats.getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
@@ -163,9 +165,9 @@ std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
     for (auto const& entry : entries) {
       os << "Iteration #" << i << "\n";
       os << "\tInitial position:\t" << entry.initialPosition << "\n";
-      os << "\tInitial theta:\t\t" << degrees(entry.initialTheta) << "°\n";
+      os << "\tInitial theta:\t\t" << math::degrees(entry.initialTheta) << "°\n";
       os << "\tFinal position:\t\t" << entry.finalPosition << "\n";
-      os << "\tFinal theta:\t\t" << degrees(entry.finalTheta) << "°\n";
+      os << "\tFinal theta:\t\t" << math::degrees(entry.finalTheta) << "°\n";
 
       os << "\tCollisions:\n";
       for (auto const& collision : entry.collisions) {
@@ -177,3 +179,5 @@ std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   }
   return os;
 }
+
+}  // namespace pool

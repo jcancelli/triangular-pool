@@ -5,6 +5,10 @@
 #include "../math/angles.hpp"
 #include "../util/unused.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 static const double POINT_RADIUS = 5;
 
 ParticleGraphics::ParticleGraphics(Particle const& particle) : m_Particle(particle) {
@@ -52,3 +56,7 @@ void ParticleGraphics::updateVelocityLine() {
   m_VelocityLine.setRotation(degrees(-theta));
   m_VelocityLine.setPosition(pos.x * getCoordsScaling(), -pos.y * getCoordsScaling());
 }
+
+}  // namespace graphics
+
+}  // namespace pool

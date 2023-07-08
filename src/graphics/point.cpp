@@ -3,6 +3,10 @@
 #include "../util/unused.hpp"
 #include "font.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 static const unsigned DEFAULT_RADIUS = 5;
 static const unsigned DEFAULT_FONT_SIZE = 15;
 static const sf::Color DEFAULT_COLOR = sf::Color::Red;
@@ -103,3 +107,7 @@ void PointGraphics::updateText() {
       break;
   }
 }
+
+}  // namespace graphics
+
+}  // namespace pool

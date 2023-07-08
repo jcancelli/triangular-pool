@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 
+namespace pool {
+
+namespace graphics {
+
 sf::Font g_FontLucindaSansRegular;
 
 struct FontConfig {
@@ -23,3 +27,7 @@ void loadFonts() {
     }
   }
 }
+
+}  // namespace graphics
+
+}  // namespace pool

@@ -6,6 +6,8 @@
 
 #include "math/ray.hpp"
 
+namespace pool {
+
 class Particle {
  private:
   glm::vec2 m_Position;
@@ -24,9 +26,11 @@ class Particle {
   float getSpeed() const;
   void setTheta(float theta);
   float getTheta() const;
-  Ray getRay() const;
+  math::Ray getRay() const;
   void reflect(glm::vec2 const& surfaceNormal);
   friend std::ostream& operator<<(std::ostream& os, Particle const& particle);
 };
+
+}  // namespace pool
 
 #endif

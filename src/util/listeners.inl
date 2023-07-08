@@ -3,6 +3,10 @@
 
 #include "listeners.hpp"
 
+namespace pool {
+
+namespace util {
+
 template <class... T>
 unsigned Listeners<T...>::add(Listener const& listener) {
   unsigned id = m_NextID++;
@@ -24,5 +28,9 @@ void Listeners<T...>::notify(T... values) const {
     listener(values...);
   }
 }
+
+}  // namespace util
+
+}  // namespace pool
 
 #endif

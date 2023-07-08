@@ -3,6 +3,10 @@
 #include <glm/geometric.hpp>
 #include <stdexcept>
 
+namespace pool {
+
+namespace math {
+
 Segment::Segment(float x1, float y1, float x2, float y2) : m_A(x1, y1), m_B(x2, y2) {
   if (m_A == m_B) {
     throw std::invalid_argument("Cannot create a 0-length segment");
@@ -95,3 +99,7 @@ void Segment::updateEquation() {
     m_LineEquation.gradient = m_LineEquation.offset = std::numeric_limits<double>::infinity();
   }
 }
+
+}  // namespace math
+
+}  // namespace pool

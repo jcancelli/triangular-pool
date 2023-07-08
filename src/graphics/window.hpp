@@ -7,6 +7,10 @@
 #include "simulation.hpp"
 #include "statistics.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 class GraphicsWindow {
  private:
   sf::RenderWindow m_Window;
@@ -23,5 +27,9 @@ class GraphicsWindow {
  private:
   void processWindowEvents();
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

@@ -2,6 +2,10 @@
 
 #include <glm/geometric.hpp>
 
+namespace pool {
+
+namespace math {
+
 Ray::Ray(glm::vec2 const& origin, glm::vec2 const& direction)
     : m_Origin(origin), m_Direction(glm::normalize(direction)) {
   updateEquation();
@@ -56,3 +60,7 @@ void Ray::updateEquation() {
     m_LineEquation.gradient = m_LineEquation.offset = std::numeric_limits<double>::infinity();
   }
 }
+
+}  // namespace math
+
+}  // namespace pool

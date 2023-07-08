@@ -8,6 +8,10 @@
 #include "ray.hpp"
 #include "segment.hpp"
 
+namespace pool {
+
+namespace math {
+
 std::optional<glm::vec2> intersection(LinearEquation const& a, LinearEquation const& b);
 std::optional<glm::vec2> intersection(Ray const& a, Ray const& b);
 std::optional<glm::vec2> intersection(Segment const& a, Segment const& b);
@@ -17,5 +21,9 @@ std::optional<glm::vec2> intersection(LinearEquation const& line, Segment const&
 std::optional<glm::vec2> intersection(Segment const& segment, LinearEquation const& line);
 std::optional<glm::vec2> intersection(Ray const& ray, Segment const& segment);
 std::optional<glm::vec2> intersection(Segment const& segment, Ray const& ray);
+
+}  // namespace math
+
+}  // namespace pool
 
 #endif

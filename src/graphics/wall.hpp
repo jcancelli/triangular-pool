@@ -7,6 +7,10 @@
 #include "graphics.hpp"
 #include "point.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 class WallGraphics : public Graphics {
  private:
   Wall const& m_Wall;
@@ -25,5 +29,9 @@ class WallGraphics : public Graphics {
   void updatePositions();
   void updateText();
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

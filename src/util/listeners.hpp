@@ -5,6 +5,10 @@
 #include <map>
 #include <type_traits>
 
+namespace pool {
+
+namespace util {
+
 template <class... T>
 class Listeners {
  public:
@@ -19,6 +23,10 @@ class Listeners {
   void remove(unsigned listenerID);
   void notify(T... values) const;
 };
+
+}  // namespace util
+
+}  // namespace pool
 
 #include "listeners.inl"
 

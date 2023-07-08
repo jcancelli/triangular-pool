@@ -10,6 +10,10 @@
 #include "particle.hpp"
 #include "wall.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 class SimulationGraphics : public Graphics {
  private:
   Simulation& m_Simulation;
@@ -26,5 +30,9 @@ class SimulationGraphics : public Graphics {
  protected:
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
+
+}  // namespace graphics
+
+}  // namespace pool
 
 #endif

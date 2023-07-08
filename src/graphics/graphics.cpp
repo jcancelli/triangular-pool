@@ -2,6 +2,10 @@
 
 #include "../util/unused.hpp"
 
+namespace pool {
+
+namespace graphics {
+
 Graphics::Graphics() : m_CoordsScaling{1.0} {
 }
 
@@ -16,3 +20,7 @@ void Graphics::setCoordsScaling(double factor) {
 double Graphics::getCoordsScaling() const {
   return m_CoordsScaling;
 }
+
+}  // namespace graphics
+
+}  // namespace pool
