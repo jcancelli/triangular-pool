@@ -13,6 +13,7 @@ GitHub: *https://github.com/jcancelli/triangular-pool*
 	- [Comandi](#comandi)
 - [Esecuzione](#esecuzione)
 	- [Argomenti CLI](#argomenti-cli)
+	- [Modalità d'esecuzione](#modalità-desecuzione)
 
 ## Introduzione
 
@@ -66,9 +67,9 @@ Una volta terminato il programma verranno forniti in output:
 - La media del numero di collisioni per ogni iterazione.
 
 
-
-
 Informazioni ulteriori su input e output nella sezione [Argomenti CLI](#argomenti-cli).
+
+[Torna all'indice](#biliardo-triangolare)
 
 
 ## Compilazione
@@ -86,6 +87,8 @@ Informazioni ulteriori su input e output nella sezione [Argomenti CLI](#argoment
 | Setup build system | `cmake -S . -B build` |
 | Build progetto | `cmake --build build` |
 
+[Torna all'indice](#biliardo-triangolare)
+
 
 ## Esecuzione
 
@@ -93,9 +96,87 @@ Informazioni ulteriori su input e output nella sezione [Argomenti CLI](#argoment
 
 Il programma viene compilato nell'eseguibile `./build/src/triangular_pool`
 
+
 ### Argomenti CLI
 
 E' possibile modificare il comportamento di Trangular Pool attraverso
 l'uso di alcuni parametri e flags che possono essere passati all'eseguibile.
 In ogni momento è possibile accedere ad una lista di questi parametri eseguendo
 triangular pool con l'opzione `--help` o `-h`.
+
+```
+$ ./build/src/triangular_pool --help
+usage: ./build/src/triangular_pool [--r1 R1] [--r2 R2] [--l L] [--n N] [--mean-y
+MEAN-Y] [--std-dev-y STD-DEV-Y] [--mean-theta MEAN-THETA] [--std-dev-theta
+STD-DEV-THETA] [--speed SPEED] [--verbose] [--graphics] [--help]
+
+Simulation of a triangular pool
+
+optional arguments:
+  --r1 R1                     Value of y of the leftmost extreme of the upper
+                              wall (-r1 for the lower wall).
+  --r2 R2                     Value of y of the rightmost extreme of the upper
+                              wall (-r2 for the lower wall).
+  --l L                       Value of x of the rightmost extreme of both walls.
+  --n N                       Number of iterations of the simulation.
+  --mean-y MEAN-Y             Mean value of the initial y coordinate of the
+                              particle (normal distribution).
+  --std-dev-y STD-DEV-Y       Standard deviation of the initial particle y
+                              coordinate.
+  --mean-theta MEAN-THETA     Mean value of the initial angle of direction of
+                              the particle in degrees (normal distribution).
+  --std-dev-theta STD-DEV-THETA
+                              Standard deviation of the initial particle
+                              direction angle value.
+  --speed SPEED               Speed of the simulation. If the flag --graphics is
+                              not present this value will be ignored.
+  --verbose                   Value of y of the leftmost extreme of the upper
+                              wall (-r1 for the lower wall).
+  --graphics                  Enables graphical visualization of the simulation.
+                              In graphical mode the simulation keeps iterating
+                              until the program is stopped (the parameter n is
+                              ignored).
+  -h, --help                  Display this help message and exit.
+```
+
+### Modalità d'esecuzione
+
+
+#### Testuale
+
+Modalità di default (se non viene passata la flag `--graphics`). Output solamente nel terminale.
+
+```
+$ ./build/src/triangular_pool --verbose --n=100
+
+------ Stats ------
+N:                      100                     Number of iterations
+mean Y:                 0.103339                Mean final Y
+mean theta:             -3.10108°               Mean final particle direction angle
+mean collisions:        0.4             Mean number of collisions per iteration
+stddev y:               0.643225                Standard deviation final Y
+stddev theta:           23.0848°                Standard deviation final particle direction angle
+sym Y:                  -0.427097               Symmetry coefficient final Y
+sym theta:              -0.292333               Symmetry coefficient final particle direction angle
+flat Y:                 3.51424         Flattening coefficient final Y
+flat theta:             3.31438         Flattening coefficient final particle direction angle
+------ Details ------
+Iteration #1
+        Initial position:       { x: 0, y: 1.60159 }
+        Initial theta:          1.74768°
+        Final position:         { x: 5, y: 0.17248 }
+        Final theta:            -24.3675°
+        Collisions:
+                { x: 1.72836, y: 1.65433 }
+```
+
+
+#### Grafica
+
+Modalità attivata dalla flag `--graphics`. In essa l'utente può osservare l'evoluzione
+della simulazione in real time. E' possibile controllare la velocità della simulazione
+grafica passando la flag `--speed=<number>`.
+
+![Screenshot Graphics](screenshot-graphics.png)
+
+[Torna all'indice](#biliardo-triangolare)
