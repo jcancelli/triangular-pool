@@ -23,7 +23,7 @@ Il programma si pone lo scopo di simulare il comportamento di una
 particella in movimento all'interno di un "biliardo triangolare", ovvero
 un sistema delimitato da una barriera superiore e da una inferiore (vedi figura).
 
-![biliardo triangolare](biliardo.svg)
+![biliardo triangolare](resources/readme/biliardo.svg)
 
 In questa simulazione la particella partirà dalla posizione $(0, y_i)$ con
 una direzione definita dall'angolo $\theta_i$ e, a seguito di $n$ collisioni elastiche con
@@ -177,6 +177,6 @@ Modalità attivata dalla flag `--graphics`. In essa l'utente può osservare l'ev
 della simulazione in real time. E' possibile controllare la velocità della simulazione
 grafica passando la flag `--speed=<number>`.
 
-![Screenshot Graphics](screenshot-graphics.png)
+![Screenshot Graphics](resources/readme/screenshot-graphics.png)
 
 [Torna all'indice](#biliardo-triangolare)
