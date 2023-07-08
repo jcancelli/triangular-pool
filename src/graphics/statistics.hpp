@@ -9,7 +9,7 @@
 class StatisticsGraphics : public Graphics {
  private:
   Simulation const& m_Simulation;
-  sf::Text m_Text;
+  sf::Text m_Labels, m_Values;
 
  public:
   StatisticsGraphics(Simulation& simulation);
