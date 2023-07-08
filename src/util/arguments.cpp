@@ -57,16 +57,16 @@ ParseStatus parseArguments(int argc, char* argv[], Config& config) {
       .default_value(config.verboseOutput)
       .flagValue("1")
       .help("Value of y of the leftmost extreme of the upper wall (-r1 for the lower wall).");
+  params.add_parameter(config.outputCSVHeaders, "--csv-headers")
+      .default_value(config.outputCSVHeaders)
+      .flagValue("1")
+      .help("Will add headers to CSV output.");
   params.add_parameter(config.outputAsCSV, "--output-csv")
       .default_value(config.outputAsCSV)
       .flagValue("1")
       .help(
           "Will output simulation info in CSV format (if no --csv-headers flag is added, only data "
-          "will be outputted).");
-  params.add_parameter(config.outputCSVHeaders, "--csv-headers")
-      .default_value(config.outputCSVHeaders)
-      .flagValue("1")
-      .help("Will add headers to CSV output.");
+          "will be outputed).");
   params.add_parameter(config.graphics, "--graphics")
       .default_value(config.graphics)
       .flagValue("1")
