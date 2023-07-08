@@ -20,6 +20,7 @@ class Statistics {
   Entry m_CurrentEntry;
   float m_MeanFinalY;
   float m_MeanFinalTheta;
+  float m_MeanCollisions;
   float m_StdDevFinalY;
   float m_StdDevFinalTheta;
   float m_SymmetryFinalY;
@@ -28,6 +29,7 @@ class Statistics {
   float m_FlatteningFinalTheta;
   float m_FinalYSum;
   float m_FinalThetaSum;
+  float m_CollisionsSum;
   bool m_VerboseOutput;
 
  public:
@@ -42,6 +44,7 @@ class Statistics {
   int getIterationsCount() const;
   float getMeanFinalY() const;
   float getMeanFinalTheta() const;
+  float getMeanCollisions() const;
   float getStdDevFinalY() const;
   float getStdDevFinalTheta() const;
   float getSymmetryFinalY() const;

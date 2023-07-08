@@ -10,6 +10,7 @@
 Statistics::Statistics()
     : m_MeanFinalY{0.0},
       m_MeanFinalTheta{0.0},
+      m_MeanCollisions{0.0},
       m_StdDevFinalY{0.0},
       m_StdDevFinalTheta{0.0},
       m_SymmetryFinalY{0.0},
@@ -18,6 +19,7 @@ Statistics::Statistics()
       m_FlatteningFinalTheta{0.0},
       m_FinalYSum{0.0},
       m_FinalThetaSum{0.0},
+      m_CollisionsSum{0.0},
       m_VerboseOutput{true} {
 }
 
@@ -63,6 +65,10 @@ float Statistics::getMeanFinalTheta() const {
   return m_MeanFinalTheta;
 }
 
+float Statistics::getMeanCollisions() const {
+  return m_MeanCollisions;
+}
+
 float Statistics::getStdDevFinalY() const {
   return m_StdDevFinalY;
 }
@@ -98,11 +104,13 @@ bool Statistics::isVerboseOutput() const {
 void Statistics::updateStats() {
   m_FinalYSum += m_CurrentEntry.finalPosition.y;
   m_FinalThetaSum += m_CurrentEntry.finalTheta;
+  m_CollisionsSum += m_CurrentEntry.collisions.size();
 
-  const int n = m_Entries.size();
+  const int n = getIterationsCount();
 
   m_MeanFinalY = m_FinalYSum / n;
   m_MeanFinalTheta = m_FinalThetaSum / n;
+  m_MeanCollisions = m_CollisionsSum / n;
 
   if (n < 2) {
     return;
@@ -129,20 +137,24 @@ void Statistics::updateStats() {
 std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
   const auto entries = stats.getEntries();
 
-  os << "N:\t\t" << stats.getIterationsCount() << "\t\tNumber of iterations\n";
+  os << "N:\t\t\t" << stats.getIterationsCount() << "\t\t\tNumber of iterations\n";
 
-  os << "mean Y:\t\t" << stats.getMeanFinalY() << "\t\tMean final Y\n";
-  os << "stddev y:\t" << stats.getStdDevFinalY() << "\t\tStandard deviation final Y\n";
-  os << "sym Y:\t\t" << stats.getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
-  os << "flat Y:\t\t" << stats.getFlatteningFinalY() << "\t\tFlattening coefficient final Y\n";
-
-  os << "mean theta:\t" << degrees(stats.getMeanFinalTheta())
+  os << "mean Y:\t\t\t" << stats.getMeanFinalY() << "\t\tMean final Y\n";
+  os << "mean theta:\t\t" << degrees(stats.getMeanFinalTheta())
      << "°\t\tMean final particle direction angle\n";
-  os << "stddev theta:\t" << degrees(stats.getStdDevFinalTheta())
+  os << "mean collisions:\t" << stats.getMeanCollisions()
+     << "\t\tMean number of collisions per iteration\n";
+
+  os << "stddev y:\t\t" << stats.getStdDevFinalY() << "\t\tStandard deviation final Y\n";
+  os << "stddev theta:\t\t" << degrees(stats.getStdDevFinalTheta())
      << "°\t\tStandard deviation final particle direction angle\n";
-  os << "sym theta:\t" << stats.getSymmetryFinalTheta()
+
+  os << "sym Y:\t\t\t" << stats.getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
+  os << "sym theta:\t\t" << stats.getSymmetryFinalTheta()
      << "\t\tSymmetry coefficient final particle direction angle\n";
-  os << "flat theta:\t" << stats.getFlatteningFinalTheta()
+
+  os << "flat Y:\t\t\t" << stats.getFlatteningFinalY() << "\t\tFlattening coefficient final Y\n";
+  os << "flat theta:\t\t" << stats.getFlatteningFinalTheta()
      << "\t\tFlattening coefficient final particle direction angle\n";
 
   if (stats.isVerboseOutput()) {
