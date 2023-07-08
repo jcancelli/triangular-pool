@@ -41,7 +41,7 @@ void Particle::setSpeed(float speed) {
 }
 
 float Particle::getSpeed() const {
-  return m_Velocity.length();
+  return glm::length(m_Velocity);
 }
 
 void Particle::setTheta(float theta) {
