@@ -13,14 +13,11 @@ class ParticleGraphics : public Graphics {
   Particle const& m_Particle;
   PointGraphics m_Point;
   sf::RectangleShape m_VelocityLine;
-  double m_CoordinatesScalingFactor;
 
  public:
   ParticleGraphics(Particle const& particle);
 
-  void update(double deltaTimeMs);
-  void setCoordinatesScaling(double factor);
-  double getCoordinatesScaling() const;
+  void update(sf::Time const& delta) override;
 
  protected:
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

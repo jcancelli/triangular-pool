@@ -8,8 +8,7 @@
 static const double VELOCITY_LINE_THICKNESS = 2.5;
 static const double POINT_RADIUS = 5;
 
-ParticleGraphics::ParticleGraphics(Particle const& particle)
-    : m_Particle(particle), m_CoordinatesScalingFactor{1.0} {
+ParticleGraphics::ParticleGraphics(Particle const& particle) : m_Particle(particle) {
   m_VelocityLine.setOrigin(0, VELOCITY_LINE_THICKNESS / 2);
   m_VelocityLine.setFillColor(sf::Color::Green);
   m_Point.setRadius(POINT_RADIUS);
@@ -20,18 +19,10 @@ ParticleGraphics::ParticleGraphics(Particle const& particle)
   updateVelocityLine();
 }
 
-void ParticleGraphics::update(double deltaTimeMs) {
+void ParticleGraphics::update(sf::Time const& delta) {
   updatePosition();
   updateText();
   updateVelocityLine();
-}
-
-void ParticleGraphics::setCoordinatesScaling(double factor) {
-  m_CoordinatesScalingFactor = factor;
-}
-
-double ParticleGraphics::getCoordinatesScaling() const {
-  return m_CoordinatesScalingFactor;
 }
 
 void ParticleGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -42,7 +33,7 @@ void ParticleGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) c
 
 void ParticleGraphics::updatePosition() {
   auto pos = m_Particle.getPosition();
-  m_Point.setPosition(pos.x * m_CoordinatesScalingFactor, -pos.y * m_CoordinatesScalingFactor);
+  m_Point.setPosition(pos.x * getCoordsScaling(), -pos.y * getCoordsScaling());
 }
 
 void ParticleGraphics::updateText() {
@@ -58,8 +49,7 @@ void ParticleGraphics::updateVelocityLine() {
   auto theta = m_Particle.getTheta();
   auto pos = m_Particle.getPosition();
   m_VelocityLine.setSize(
-      sf::Vector2f(m_Particle.getSpeed() * m_CoordinatesScalingFactor, VELOCITY_LINE_THICKNESS));
+      sf::Vector2f(m_Particle.getSpeed() * getCoordsScaling(), VELOCITY_LINE_THICKNESS));
   m_VelocityLine.setRotation(degrees(-theta));
-  m_VelocityLine.setPosition(pos.x * m_CoordinatesScalingFactor,
-                             -pos.y * m_CoordinatesScalingFactor);
+  m_VelocityLine.setPosition(pos.x * getCoordsScaling(), -pos.y * getCoordsScaling());
 }
