@@ -17,16 +17,8 @@ PointGraphics::PointGraphics() : m_TextSide(DEFAULT_TEXT_SIDE) {
   setColor(DEFAULT_COLOR);
 }
 
-PointGraphics::PointGraphics(double x, double y, double radius, std::string const& text)
-    : m_TextSide(DEFAULT_TEXT_SIDE) {
-  setRadius(radius);
-
-  m_Text.setFont(g_FontLucindaSansRegular);
-  setText(text);
-  setFontSize(DEFAULT_FONT_SIZE);
-
-  setPosition(x, y);
-  setColor(DEFAULT_COLOR);
+void PointGraphics::update(sf::Time const& delta) {
+  updateText();
 }
 
 void PointGraphics::setText(std::string const& text) {
@@ -40,7 +32,6 @@ std::string PointGraphics::getText() const {
 
 void PointGraphics::setTextSide(PointGraphics::TextSide side) {
   m_TextSide = side;
-  alignText();
 }
 
 PointGraphics::TextSide PointGraphics::getTextSide() const {
@@ -58,7 +49,6 @@ sf::Color PointGraphics::getColor() const {
 
 void PointGraphics::setFontSize(unsigned fontSize) {
   m_Text.setCharacterSize(fontSize);
-  alignText();
 }
 
 unsigned PointGraphics::getFontSize() const {
@@ -68,7 +58,6 @@ unsigned PointGraphics::getFontSize() const {
 void PointGraphics::setRadius(double radius) {
   m_Point.setRadius(radius);
   m_Point.setOrigin(radius, radius);
-  alignText();
 }
 
 double PointGraphics::getRadius() const {
@@ -81,7 +70,7 @@ void PointGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) cons
   target.draw(m_Text, states);
 }
 
-void PointGraphics::alignText() {
+void PointGraphics::updateText() {
   auto radius = getRadius();
   const auto bounds = m_Text.getLocalBounds();
   const double margin = 5;

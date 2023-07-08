@@ -18,8 +18,8 @@ class PointGraphics : public Graphics {
 
  public:
   PointGraphics();
-  PointGraphics(double x, double y, double radius = 5.0, std::string const& text = "");
 
+  void update(sf::Time const& delta) override;
   void setText(std::string const& text);
   std::string getText() const;
   void setTextSide(TextSide side);
@@ -35,7 +35,7 @@ class PointGraphics : public Graphics {
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
  private:
-  void alignText();
+  void updateText();
 };
 
 #endif
