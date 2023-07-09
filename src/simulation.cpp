@@ -184,6 +184,14 @@ Wall const& Simulation::getWallLow() const {
   return m_WallLow;
 }
 
+math::Segment const& Simulation::getStartLine() const {
+  return m_StartLine;
+}
+
+math::Segment const& Simulation::getFinishLine() const {
+  return m_FinishLine;
+}
+
 Statistics const& Simulation::getStats() const {
   return m_Stats;
 }
