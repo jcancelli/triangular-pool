@@ -21,6 +21,14 @@ double Graphics::getCoordsScaling() const {
   return m_CoordsScaling;
 }
 
+unsigned Graphics::addCoordsScalingChangeListener(util::Listeners<double>::Listener listener) {
+  return m_CoordsScalingChangedListeners.add(listener);
+}
+
+void Graphics::removeCoordsScalingChangeListener(unsigned listenerID) {
+  m_CoordsScalingChangedListeners.remove(listenerID);
+}
+
 }  // namespace graphics
 
 }  // namespace pool

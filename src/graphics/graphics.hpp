@@ -6,6 +6,8 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/System/Clock.hpp>
 
+#include "../util/listeners.hpp"
+
 namespace pool {
 
 namespace graphics {
@@ -13,6 +15,7 @@ namespace graphics {
 class Graphics : public sf::Drawable, public sf::Transformable {
  private:
   double m_CoordsScaling;
+  util::Listeners<double> m_CoordsScalingChangedListeners;
 
  public:
   Graphics();
@@ -20,6 +23,8 @@ class Graphics : public sf::Drawable, public sf::Transformable {
   virtual void update(sf::Time const& delta);
   void setCoordsScaling(double factor);
   double getCoordsScaling() const;
+  unsigned addCoordsScalingChangeListener(util::Listeners<double>::Listener listener);
+  void removeCoordsScalingChangeListener(unsigned listenerID);
 };
 
 }  // namespace graphics
