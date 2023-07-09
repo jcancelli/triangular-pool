@@ -100,6 +100,7 @@ ne tracci le statistiche in modo separato.
 |--------|----------|
 | Setup build system | `cmake -S . -B build` |
 | Build progetto | `cmake --build build` |
+| Run unit tests | `ctest --build-and-test . build --build-generator "Unix Makefiles" --test-command ctest` |
 
 
 ### Warnings aspettati
