@@ -33,7 +33,6 @@ int main(int argc, char* argv[]) {
     pool::Simulation simulation(config.r1, config.r2, config.l, config.meanInitialY,
                                 config.stddevInitialY, pool::math::radians(config.meanInitialTheta),
                                 pool::math::radians(config.stddevInitialTheta));
-    simulation.setVerboseOutput(config.verboseOutput);
     simulation.setSpeedMultiplier(config.simulationSpeed);
 
     if (config.graphics) {
@@ -71,12 +70,11 @@ static void printOutput(pool::Simulation const& simulation, pool::util::Config c
                    "deviation initial theta\n";
     }
     std::cout << simulation.getR1() << ";" << simulation.getR2() << ";" << simulation.getL() << ";"
-              << simulation.getStats().asCSV() << ";" << simulation.getMeanInitialParticleY() << ";"
-              << simulation.getInitialParticleYStdDev() << ";"
+              << simulation.getStats().toCSVString() << ";" << simulation.getMeanInitialParticleY()
+              << ";" << simulation.getInitialParticleYStdDev() << ";"
               << simulation.getMeanInitialParticleTheta() << ";"
               << simulation.getInitialParticleThetaStdDev() << "\n";
   } else {
-    std::cout << "\n------ Stats ------\n";
-    std::cout << simulation.getStats() << "\n";
+    std::cout << simulation.getStats().toString(config.verboseOutput) << "\n";
   }
 }

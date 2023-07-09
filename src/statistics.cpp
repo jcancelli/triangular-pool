@@ -22,8 +22,7 @@ Statistics::Statistics()
       m_FlatteningFinalTheta{0.0},
       m_FinalYSum{0.0},
       m_FinalThetaSum{0.0},
-      m_CollisionsSum{0.0},
-      m_VerboseOutput{true} {
+      m_CollisionsSum{0.0} {
 }
 
 void Statistics::createNewEntry(glm::vec2 const& initialPosition, float initialTheta) {
@@ -96,15 +95,51 @@ float Statistics::getFlatteningFinalTheta() const {
   return m_FlatteningFinalTheta;
 }
 
-void Statistics::setVerboseOutput(bool verbose) {
-  m_VerboseOutput = verbose;
+std::string Statistics::toString(bool verbose) const {
+  std::stringstream out;
+  out << "------Stats ------\n";
+  out << "N:\t\t\t" << getIterationsCount() << "\t\t\tNumber of iterations\n";
+
+  out << "mean Y:\t\t\t" << getMeanFinalY() << "\t\tMean final Y\n";
+  out << "mean theta:\t\t" << math::degrees(getMeanFinalTheta())
+      << "°\t\tMean final particle direction angle\n";
+  out << "mean collisions:\t" << getMeanCollisions()
+      << "\t\tMean number of collisions per iteration\n";
+
+  out << "stddev y:\t\t" << getStdDevFinalY() << "\t\tStandard deviation final Y\n";
+  out << "stddev theta:\t\t" << math::degrees(getStdDevFinalTheta())
+      << "°\t\tStandard deviation final particle direction angle\n";
+
+  out << "sym Y:\t\t\t" << getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
+  out << "sym theta:\t\t" << getSymmetryFinalTheta()
+      << "\t\tSymmetry coefficient final particle direction angle\n";
+
+  out << "flat Y:\t\t\t" << getFlatteningFinalY() << "\t\tFlattening coefficient final Y\n";
+  out << "flat theta:\t\t" << getFlatteningFinalTheta()
+      << "\t\tFlattening coefficient final particle direction angle\n";
+
+  if (verbose) {
+    int i = 1;
+    out << "------ Details ------\n";
+    for (auto const& entry : m_Entries) {
+      out << "Iteration #" << i << "\n";
+      out << "\tInitial position:\t" << entry.initialPosition << "\n";
+      out << "\tInitial theta:\t\t" << math::degrees(entry.initialTheta) << "°\n";
+      out << "\tFinal position:\t\t" << entry.finalPosition << "\n";
+      out << "\tFinal theta:\t\t" << math::degrees(entry.finalTheta) << "°\n";
+
+      out << "\tCollisions:\n";
+      for (auto const& collision : entry.collisions) {
+        out << "\t\t" << collision << "\n";
+      }
+
+      i++;
+    }
+  }
+  return out.str();
 }
 
-bool Statistics::isVerboseOutput() const {
-  return m_VerboseOutput;
-}
-
-std::string Statistics::asCSV() const {
+std::string Statistics::toCSVString() const {
   std::stringstream out;
   out << getIterationsCount() << ";";
   out << getMeanFinalY() << ";";
@@ -150,50 +185,6 @@ void Statistics::updateStats() {
 
   m_FlatteningFinalY = math::kurtosis(yValues, m_MeanFinalY, m_StdDevFinalY);
   m_FlatteningFinalTheta = math::kurtosis(thetaValues, m_MeanFinalTheta, m_StdDevFinalTheta);
-}
-
-std::ostream& operator<<(std::ostream& os, Statistics const& stats) {
-  const auto entries = stats.getEntries();
-
-  os << "N:\t\t\t" << stats.getIterationsCount() << "\t\t\tNumber of iterations\n";
-
-  os << "mean Y:\t\t\t" << stats.getMeanFinalY() << "\t\tMean final Y\n";
-  os << "mean theta:\t\t" << math::degrees(stats.getMeanFinalTheta())
-     << "°\t\tMean final particle direction angle\n";
-  os << "mean collisions:\t" << stats.getMeanCollisions()
-     << "\t\tMean number of collisions per iteration\n";
-
-  os << "stddev y:\t\t" << stats.getStdDevFinalY() << "\t\tStandard deviation final Y\n";
-  os << "stddev theta:\t\t" << math::degrees(stats.getStdDevFinalTheta())
-     << "°\t\tStandard deviation final particle direction angle\n";
-
-  os << "sym Y:\t\t\t" << stats.getSymmetryFinalY() << "\t\tSymmetry coefficient final Y\n";
-  os << "sym theta:\t\t" << stats.getSymmetryFinalTheta()
-     << "\t\tSymmetry coefficient final particle direction angle\n";
-
-  os << "flat Y:\t\t\t" << stats.getFlatteningFinalY() << "\t\tFlattening coefficient final Y\n";
-  os << "flat theta:\t\t" << stats.getFlatteningFinalTheta()
-     << "\t\tFlattening coefficient final particle direction angle\n";
-
-  if (stats.isVerboseOutput()) {
-    int i = 1;
-    os << "------ Details ------\n";
-    for (auto const& entry : entries) {
-      os << "Iteration #" << i << "\n";
-      os << "\tInitial position:\t" << entry.initialPosition << "\n";
-      os << "\tInitial theta:\t\t" << math::degrees(entry.initialTheta) << "°\n";
-      os << "\tFinal position:\t\t" << entry.finalPosition << "\n";
-      os << "\tFinal theta:\t\t" << math::degrees(entry.finalTheta) << "°\n";
-
-      os << "\tCollisions:\n";
-      for (auto const& collision : entry.collisions) {
-        os << "\t\t" << collision << "\n";
-      }
-
-      i++;
-    }
-  }
-  return os;
 }
 
 }  // namespace pool

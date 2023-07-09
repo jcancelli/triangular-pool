@@ -196,14 +196,6 @@ Statistics const& Simulation::getStats() const {
   return m_Stats;
 }
 
-void Simulation::setVerboseOutput(bool verbose) {
-  m_Stats.setVerboseOutput(verbose);
-}
-
-bool Simulation::isVerboseOutput() const {
-  return m_Stats.isVerboseOutput();
-}
-
 void Simulation::setSpeedMultiplier(float multiplier) {
   if (multiplier <= 0) {
     throw std::invalid_argument("Error: Speed multiplier must be positive");

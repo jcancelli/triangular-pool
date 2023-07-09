@@ -2,7 +2,6 @@
 #define STATISTICS_HPP
 
 #include <glm/vec2.hpp>
-#include <ostream>
 #include <vector>
 
 namespace pool {
@@ -32,7 +31,6 @@ class Statistics {
   float m_FinalYSum;
   float m_FinalThetaSum;
   float m_CollisionsSum;
-  bool m_VerboseOutput;
 
  public:
   Statistics();
@@ -53,15 +51,12 @@ class Statistics {
   float getSymmetryFinalTheta() const;
   float getFlatteningFinalY() const;
   float getFlatteningFinalTheta() const;
-  void setVerboseOutput(bool verbose);
-  bool isVerboseOutput() const;
-  std::string asCSV() const;
+  std::string toString(bool verbose = false) const;
+  std::string toCSVString() const;
 
  private:
   void updateStats();
 };
-
-std::ostream& operator<<(std::ostream& os, Statistics const& stats);
 
 }  // namespace pool
 

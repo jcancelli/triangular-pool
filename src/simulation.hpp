@@ -43,8 +43,6 @@ class Simulation {
   math::Segment const& getStartLine() const;
   math::Segment const& getFinishLine() const;
   Statistics const& getStats() const;
-  void setVerboseOutput(bool verbose);
-  bool isVerboseOutput() const;
   void setSpeedMultiplier(float multiplier);
   float getSpeedMultiplier() const;
   unsigned addNewIterationListener(util::Listeners<Particle const&>::Listener listener);
