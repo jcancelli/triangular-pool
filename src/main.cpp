@@ -10,6 +10,8 @@
 /* TODO: Change how the simulation handles particles coming out of the back. The simulation should
          consider iterations where the particles comes out of the back as "failed" and should track
          failed iterations statistics.
+
+        TODO: Use addOnCoordsScalingChangeListener on all graphics objects that could use it
 */
 
 static void printOutput(pool::Simulation const&, pool::util::Config const&);
