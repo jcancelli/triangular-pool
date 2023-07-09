@@ -15,6 +15,7 @@ void Graphics::update(sf::Time const& delta) {
 
 void Graphics::setCoordsScaling(double factor) {
   m_CoordsScaling = factor;
+  m_CoordsScalingChangedListeners.notify(factor);
 }
 
 double Graphics::getCoordsScaling() const {
